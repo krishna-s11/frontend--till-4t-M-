@@ -21,6 +21,7 @@ const MenuItem = ({
   path,
   activeMenuItem,
   setActiveMenuItem,
+  externalPath
 }) => {
   const [showSubmenu, setShowSubmenu] = useState(false);
   const location = useLocation();
@@ -48,6 +49,10 @@ const MenuItem = ({
     if (path) {
       setActiveMenuItem(title);
       navigate(path);
+    }
+    if (externalPath){
+      window.open(externalPath, '_blank');
+
     }
   };
 
@@ -111,6 +116,7 @@ const Sidebar = () => {
             { title: "Inbox", submenus: [] },
             { title: "Sent", submenus: [] },
           ],
+          externalPath: "https://social-messenger-iota.vercel.app/"
         },
         {
           title: "Friends",
@@ -173,7 +179,7 @@ const Sidebar = () => {
     },
     {
       title: "Shop",
-      submenus: [],
+      externalPath: "http://swinxterrooms.com/"
     },
     {
       title: "Situationship",
@@ -279,6 +285,7 @@ navigate("/login")}).catch((err)=>console.log(err))
                 title={menuItem.title}
                 path={menuItem.path}
                 submenus={menuItem.submenus}
+                externalPath={menuItem.externalPath?menuItem.externalPath:null}
               />
             ))}
             <li>
