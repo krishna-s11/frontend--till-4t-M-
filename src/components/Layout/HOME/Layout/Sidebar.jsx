@@ -116,8 +116,8 @@ const Sidebar = () => {
           title: "Friends",
           submenus: [
             { title: "My Friends", submenus: [],path:"/my_friends"},
-            { title: "Sent", submenus: [],path:"/send_request" },
-            { title: "Received", submenus: [] ,path:"/received_request"},
+            { title: "Sent", submenus: [],path:"/sent_request" },
+            { title: "Received", submenus: [] ,path:"/recieved_request"},
           ],
         },
         {
@@ -142,10 +142,11 @@ const Sidebar = () => {
         {
           title: "Who Viewed Me",
           submenus: [],
+          path: "/visited-users"
         },
         { title: "New Members", submenus: [],path:"/recentuser" },
-        { title: "Near Members", submenus: [] },
-        { title: "Who Is On", submenus: [] ,path:"/currentuser"},
+        { title: "Near Members", submenus: [], path: "/nearusers"},
+        { title: "Who Is On", submenus: [] ,path:"/onlineusers"},
       ],
     },
     {

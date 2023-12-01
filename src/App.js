@@ -38,6 +38,13 @@ import Main_Home from './pages/Main_Home';
 import NotFound from './pages/NotFound';
 import TravelPage from './pages/TravelPage';
 import UserDetailPage from './pages/UserDetailPage';
+import VisitedUsers from "./pages/VisitedUsers";
+import RecentUser from "./pages/RecentUser";
+import NearUsers from './pages/NearUsers';
+import OnlineUers from './pages/OnlineUers';
+import MyFriends from './pages/MyFriends';
+import SentRequest from './pages/SentRequest';
+import RecievedRequests from './pages/RecievedRequests';
 import { loadUser } from './redux/actions/auth';
 import { LOGOUT } from './redux/actions/types';
 import store from './redux/store';
@@ -114,6 +121,14 @@ if(isAuthenticated){
 <Route path="/event-detail-media" element={<ProtectedRoute><EventDetailMedia /></ProtectedRoute>} />
 <Route path="/my-event" element={<ProtectedRoute><Myevents/></ProtectedRoute>} />
 <Route path="/event-participants" element={<ProtectedRoute><EventParticipants /></ProtectedRoute>} />
+<Route path="/visited-users" element={<ProtectedRoute>< VisitedUsers/></ProtectedRoute>} />
+<Route path="/recentuser" element={<ProtectedRoute>< RecentUser/></ProtectedRoute>} />
+<Route path="/nearusers" element={<ProtectedRoute>< NearUsers/></ProtectedRoute>} />
+<Route path="/onlineusers" element={<ProtectedRoute><OnlineUers/></ProtectedRoute>} />
+<Route path="/my_friends" element={<ProtectedRoute><MyFriends/></ProtectedRoute>} />
+<Route path="/sent_request" element={<ProtectedRoute><SentRequest/></ProtectedRoute>} />
+<Route path="/recieved_request" element={<ProtectedRoute><RecievedRequests/></ProtectedRoute>} />
+{/* <Route path="/message" element={<ProtectedRoute><Message/></ProtectedRoute>} /> */}
 
 {/* CLUBS */}
 <Route path="/club-page" element={<ProtectedRoute><ClubPage /></ProtectedRoute>} />
