@@ -111,14 +111,6 @@ const Sidebar = () => {
       title: "My Interactions",
       submenus: [
         {
-          title: "Messages",
-          submenus: [
-            { title: "Inbox", submenus: [] },
-            { title: "Sent", submenus: [] },
-          ],
-          externalPath: "https://social-messenger-iota.vercel.app/"
-        },
-        {
           title: "Friends",
           submenus: [
             { title: "My Friends", submenus: [],path:"/my_friends"},
@@ -141,6 +133,11 @@ const Sidebar = () => {
           ],
         },
       ],
+    },
+    {
+      title: "Messages",
+      submenus: [],
+      externalPath: "https://social-messenger-iota.vercel.app/"
     },
     {
       title: "Search",
@@ -179,6 +176,7 @@ const Sidebar = () => {
     },
     {
       title: "Shop",
+      submenus: [],
       externalPath: "http://swinxterrooms.com/"
     },
     {
