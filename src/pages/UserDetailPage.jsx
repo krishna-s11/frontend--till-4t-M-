@@ -1,21 +1,46 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useLocation,useNavigate } from "react-router-dom";
 import { calculateAge } from "../utils/CalculateAge";
 import CoupleDetailPage from "./CoupleDetailPage";
 import { useSelector } from "react-redux";
+import api from "../utils/api";
 
 const UserDetailPage = () => {
   const [age, setAge] = useState("");
   const [age2,setage2]=useState("")
-const {user} = useSelector
-((state)=>state.auth);
-const [userInfo,setUserInfo]=useState(user);  
-useEffect(()=>{
-  setUserInfo(user)
-},[])
+  const {user} = useSelector
+  ((state)=>state.auth);
+  const [userInfo,setUserInfo]=useState();  
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [sent,setSent] = useState(0);
+  const [loading,setLoading] = useState(0);
+
+  const getUser = async () =>{
+    const id = location.search.split("=")[1]
+    const { data } = await api.get(`/user_details/${id}`);
+    setUserInfo(data);
+    if(user.sent_requests.includes(data._id)){
+      setSent(1);
+    }
+    else{
+      setSent(0);
+    }
+  }
+
+  useEffect(()=>{
+    if(location.search.length > 0){
+      getUser();
+    }
+    else{
+      setUserInfo(user) 
+    }
+  },[])
+
+  console.log(userInfo)
 
 useEffect(() => {
-    if (userInfo.profile_type === "single") {
+    if (userInfo?.profile_type === "single") {
       setAge(calculateAge(userInfo?.DOB));
     } else {
       setAge(calculateAge(userInfo?.couple?.person1.DOB));
@@ -23,14 +48,44 @@ useEffect(() => {
     }
 }, []);
 
+const handleRemove = async () => {
+  try{
+    await api.put(`/remove_friend/${user?._id}/${userInfo?._id}`)
+    // window.location.reload();
+    // navigate("/my_friends");
+  }catch(e){
+    console.log(e);
+  }
+}
+
+const handleSendRequest = async () => {
+  try{
+    setLoading(1);
+    await api.put(`/send_request/${user?._id}/${userInfo?._id}`);
+    setLoading(0);
+    setSent(1);
+  }catch(e){
+    console.log(e);
+  }
+}
+const handleCancelRequest = async () => {
+  try{
+    setLoading(1);
+    await api.put(`/cancel_request/${user?._id}/${userInfo?._id}`);
+    setLoading(0);
+    setSent(0);
+  }catch(e){
+    console.log(e);
+  }
+}
 
 const RenderedStyle={
-"color":`${userInfo.gender=== 'male'?'#3A97FE':userInfo.gender=== 'female'?'#FF2A90':'#cf00cf'}`
+"color":`${userInfo?.gender=== 'male'?'#3A97FE':userInfo?.gender=== 'female'?'#FF2A90':'#cf00cf'}`
 }
 
   return (<>
 
-{userInfo.profile_type==="single"?
+{userInfo?.profile_type==="single"?
  <div className="bg-black-20">
  <div className="min-h-[130px] md:min-h-[130px] flex justify-center items-end bg-black rounded-b-50px">
   
@@ -48,7 +103,7 @@ const RenderedStyle={
        
        />:
        
-     (  userInfo?.gender==="male"?(<img src="/images/boy-avatar.jpg" alt="boy" />):userInfo.gender==="female"? (<img src="/images/girl-avatar.jpg" alt="girl"  />)
+     (  userInfo?.gender==="male"?(<img src="/images/boy-avatar.jpg" alt="boy" />):userInfo?.gender==="female"? (<img src="/images/girl-avatar.jpg" alt="girl"  />)
                :(<img src="/images/trans avatar.png" alt="trans"  />))
       }
      </div>
@@ -57,7 +112,7 @@ const RenderedStyle={
          <div>
            <div className="flex flex-wrap sm:flex-nowrap justify-between sm:gap-5">
              <h3 className="flex items-center text-lg sm:text-[22px] font-bold gap-2 font-body_font">
-               {userInfo.username}
+               {userInfo?.username}
                <p className="flex items-center text-sm font-light gap-1">
                  <span className="block w-3 h-3 rounded-full bg-green-500 font-body_font"></span>
                  Online
@@ -76,12 +131,48 @@ const RenderedStyle={
 
            </div>
          </div>
+         {
+          location.search.length > 0 ? 
+         <div className="grid justify-stretch gap-2 mt-3 event_card_button_wrap items-start" style={{width: "300px"}}>
+                {/* {
+                  user.friends.includes(userInfo?._id)? <button
+                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                  onClick={handleRemove}
+                >
+                  Remove Friend
+                </button>:
+                (sent === 1?
+                <button
+                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                  onClick={handleCancelRequest}
+                >
+                  Cancel Friend Request
+                </button>:
+                (user.sent_requests.includes(userInfo?._id)?
+                <button
+                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                  onClick={handleCancelRequest}
+                >
+                  Cancel Friend Request
+                </button>:<button
+                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                  onClick={handleSendRequest}
+                >
+                  Send Friend Request
+                </button>))
+                } */}
+                <button
+                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                >
+                  Message
+                </button>     
+          </div>:null}
        </div>
      </div>
    </div>
    <div className="p-5 bg-light-grey rounded-xl mt-6  max-w-5xl mx-auto">
     <h3 className="text-2xl text-orange">Slogan</h3>
-   <p className="text-lg font-body_font my-2">{userInfo.slogan}</p>
+   <p className="text-lg font-body_font my-2">{userInfo?.slogan}</p>
    <h3 className="text-2xl text-orange mt-5">Introduction</h3>
   <p className="text-lg font-body_font" dangerouslySetInnerHTML={{ __html: userInfo?.introduction?.replace(/\n/g, '<br />') }}></p>
    </div>
@@ -97,12 +188,16 @@ const RenderedStyle={
          <div className="p-5 bg-black-20 rounded-2xl w-[100%] ">
            <div className="flex justify-between gap-3 font-normal pb-3 mb-3 border-b border-orange">
              <p className="text-base sm:text-2xl">Profile</p>
+             {
+              location.search.length>0?null:
              <Link
                to="/edit-detail"
                className="cursor-pointer text-xs sm:text-lg"
              >
                Edit
              </Link>
+             }
+
            </div>
          
            <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 mb-2">
@@ -115,7 +210,7 @@ const RenderedStyle={
                <span>Male</span>
                  <div>
                  <span className="block text-right">
-                 {userInfo.interests?.male?.map((el,i)=>(
+                 {userInfo?.interests?.male?.map((el,i)=>(
                    <>
             
             <span key={i}>{i !== 0 && <span>, </span>}{el}</span>
@@ -130,7 +225,7 @@ const RenderedStyle={
                <span>Male Female</span>
                  <div>
                  <span className="block text-right">
-                 {userInfo.interests?.male_female?.map((el,i)=>(
+                 {userInfo?.interests?.male_female?.map((el,i)=>(
                    <>
               
                <span key={i}>{i !== 0 && <span>, </span>}{el}</span>
@@ -144,7 +239,7 @@ const RenderedStyle={
                <span>Female </span>
                  <div>
                  <span className="block text-right">
-                 {userInfo.interests?.female?.map((el,i)=>(
+                 {userInfo?.interests?.female?.map((el,i)=>(
                    <span key={i}> {i !== 0 && <span>, </span>}{el}</span>
                  ))}
                  </span>
@@ -154,7 +249,7 @@ const RenderedStyle={
                <span>Female Female </span>
                  <div>
                  <span className="block text-right">
-                 {userInfo.interests?.female_female?.map((el,i)=>(
+                 {userInfo?.interests?.female_female?.map((el,i)=>(
                <span key={i}> {i !== 0 && <span>, </span>}{el}</span>
                  ))}
                  </span>
@@ -164,7 +259,7 @@ const RenderedStyle={
                <span>Male Male</span>
                  <div>
                  <span className="block text-right">
-                 {userInfo.interests?.male_male?.map((el,i)=>(
+                 {userInfo?.interests?.male_male?.map((el,i)=>(
                    <span key={i}> {i !== 0 && <span>, </span>}{el}</span>
                  ))}
                  </span>
@@ -176,9 +271,9 @@ const RenderedStyle={
              <p className="text-base sm:text-2xl">Details</p>
              <p className={`text-right flex items-center justify-end text-xl`} style={RenderedStyle}>
                
-               {userInfo.gender==="male"?(<img src="images/Male.png" alt="Male" className="h-[26px] mr-1" />):userInfo.gender==="female"? (<img src="images/Female.png" alt="Male" className="h-[26px] mr-1" />)
-               :(<img src="images/Trans.png" alt="trans" className="h-[26px] mr-1" />)}
-                {userInfo.personName}</p>
+               {userInfo?.gender==="male"?(<img src="/images/Male.png" alt="Male" className="h-[26px] mr-1" />):userInfo?.gender==="female"? (<img src="/images/Female.png" alt="Male" className="h-[26px] mr-1" />)
+               :(<img src="/images/Trans.png" alt="trans" className="h-[26px] mr-1" />)}
+                {userInfo?.personName}</p>
            </div>
            <div className="grid">
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 border-b border-[#666] py-[5px] ">
@@ -186,19 +281,19 @@ const RenderedStyle={
                  Ethnic Background:
                </span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.ethnic_background}
+                 {userInfo?.ethnic_background}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 border-b border-[#666] py-[5px]">
                <span className="block font-body_font">Experience:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.experience}
+                 {userInfo?.experience}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 py-[5px] border-b border-[#666]">
                <span className="block font-body_font">Gender:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.gender}
+                 {userInfo?.gender}
                </span>
              </div>
            </div>
@@ -206,7 +301,7 @@ const RenderedStyle={
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 border-b border-[#666] py-[5px] ">
                <span className="block font-body_font">Birthdate:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.DOB}
+                 {userInfo?.DOB}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 border-b border-[#666] py-[5px] ">
@@ -214,31 +309,31 @@ const RenderedStyle={
              Sexuality
                </span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.sexuality}
+                 {userInfo?.sexuality}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 border-b border-[#666] py-[5px] ">
                <span className="block font-body_font">Height:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.height}
+                 {userInfo?.height}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 border-b border-[#666] py-[5px] ">
                <span className="block font-body_font">Weight:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.weight}
+                 {userInfo?.weight}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 border-b border-[#666] py-[5px] ">
                <span className="block font-body_font">Body Type:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.body_type}
+                 {userInfo?.body_type}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 border-b border-[#666] py-[5px] ">
                <span className="block font-body_font">Body Hair:</span>
                <span className="block text-right">
-               {userInfo.body_hair?.map((el, i) => (
+               {userInfo?.body_hair?.map((el, i) => (
                  <span className={` font-body_font`} style={RenderedStyle} key={i}>
            {el} {i!==0 && i !== userInfo?.body_hair.length-1  && <span>, </span>}
                   
@@ -249,55 +344,55 @@ const RenderedStyle={
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 border-b border-[#666] py-[5px] ">
                <span className="block font-body_font">Piercings:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.piercings}
+                 {userInfo?.piercings}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 border-b border-[#666] py-[5px] ">
                <span className="block font-body_font">Looks:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.looks_important}
+                 {userInfo?.looks_important}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 border-b border-[#666] py-[5px] ">
                <span className="block font-body_font">Smoking:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.smoking}
+                 {userInfo?.smoking}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 border-b border-[#666] py-[5px] ">
                <span className="block font-body_font">Tattoos:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.tattoos}
+                 {userInfo?.tattoos}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 py-[5px] border-b border-[#666]">
                <span className="block font-body_font">Relation:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.relationship_status}
+                 {userInfo?.relationship_status}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 py-[5px] border-b border-[#666]">
                <span className="block font-body_font">Drinking:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.Drinking}
+                 {userInfo?.Drinking}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 py-[5px] border-b border-[#666]">
                <span className="block font-body_font">Drugs:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.Drugs}
+                 {userInfo?.Drugs}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 py-[5px] border-b border-[#666] ">
                <span className="block font-body_font">Relationship Status:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.Relationship}
+                 {userInfo?.Relationship}
                </span>
              </div>
              <div className="text-sm sm:text-lg grid grid-cols-2 gap-3 py-[5px]">
                <span className="block font-body_font">Language:</span>
                <span className={`block text-right font-body_font`} style={RenderedStyle}>
-                 {userInfo.Language}
+                 {userInfo?.Language}
                </span>
              </div>
            </div>
@@ -314,7 +409,7 @@ const RenderedStyle={
    </div>
  </div>
 </div>:
-<CoupleDetailPage age={age} age2={age2}/>
+<CoupleDetailPage age={age} age2={age2} userInfo={userInfo} handleRemove={handleRemove} handleSendRequest={handleSendRequest} handleCancelRequest={handleCancelRequest} sent={sent} loading={loading}/>
 }
    
     </>

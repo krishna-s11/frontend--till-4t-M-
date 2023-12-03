@@ -50,6 +50,9 @@ import { LOGOUT } from './redux/actions/types';
 import store from './redux/store';
 import setAuthToken from './utils/setAuthToken';
 import { useSelector } from 'react-redux';
+import Membership from './pages/Membership';
+import Checkout from './pages/Checkout';
+import LegalPage from './pages/LegalPage';
 function App() {
 const {isAuthenticated} = useSelector((state)=>state.auth);
 let location = useLocation();
@@ -106,6 +109,7 @@ if(isAuthenticated){
 <Route path="/user-detail/:id" element={<Layout><ProtectedRoute><UserDetailId /></ProtectedRoute></Layout>} />
 <Route path="/edit-detail" element={<Layout><ProtectedRoute><EditUserDetailsPage /></ProtectedRoute></Layout>} />
 <Route path="editcouple-detail" element={<Layout><ProtectedRoute><CoupleEditDetailPage/></ProtectedRoute></Layout>}/>
+<Route path="/checkout/:title" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
 
 
 <Route  element={<Main_Layout/>}>
@@ -128,6 +132,8 @@ if(isAuthenticated){
 <Route path="/my_friends" element={<ProtectedRoute><MyFriends/></ProtectedRoute>} />
 <Route path="/sent_request" element={<ProtectedRoute><SentRequest/></ProtectedRoute>} />
 <Route path="/recieved_request" element={<ProtectedRoute><RecievedRequests/></ProtectedRoute>} />
+<Route path="/membership" element={<ProtectedRoute><Membership/></ProtectedRoute>} />
+<Route path="/legal/:index" element={<ProtectedRoute><LegalPage/></ProtectedRoute>} />
 {/* <Route path="/message" element={<ProtectedRoute><Message/></ProtectedRoute>} /> */}
 
 {/* CLUBS */}

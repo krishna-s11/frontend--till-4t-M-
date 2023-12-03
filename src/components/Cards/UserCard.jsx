@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 const UserCard = ({userInfo}) => {
   const navigate = useNavigate();
-  console.log(userInfo)
   return (
     <div className="user_card" style={{marginRight: "20px"}} onClick={() => {navigate(`/user-detail?id=${userInfo._id}`)}}>
       <div className='user_photo'>

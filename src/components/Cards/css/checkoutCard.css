@@ -1,0 +1,33 @@
+.checkout_card{
+    width: 400px;
+    background-color: #2A2D37;
+    border-radius: 10px;
+    padding: 30px 20px;
+}
+.checkout_card h3{
+    color: orange;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.checkout_card input{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+}
+.checkout_card p{
+    color: orange;
+    margin-left: 8px;
+    margin-bottom: 20px;
+}
+.checkout_card button{
+    width: 100%;
+    background: linear-gradient(46deg, #F79220 55.15%, #F94A2B 82%);
+    padding: 10px 20px;
+    color: #fff;
+    margin-top: 20px;
+}

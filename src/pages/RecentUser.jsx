@@ -24,8 +24,6 @@ const RecentUser = () => {
         getRecentUsers();
     },[])
 
-    console.log(users);
-
   return (
     <div className="home_page bg-black py-8 px-6 rounded-2xl">
       <div className="mb-20">
