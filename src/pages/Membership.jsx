@@ -9,9 +9,9 @@ const Membership = () => {
             <h3 className="text-2xl sm:text-5xl leading-none font-bold">
                 Membership
             </h3>
-          <p>ACCOUNT IS AUTOMATICALLY RENEWED UNLESS YOU SWITCH OFF THE RECURRING BILLING ON THE SETTINGS / ACCOUNT PAGE BEFORE THE RENEWAL DATE.<br>
+          <p>ACCOUNT IS AUTOMATICALLY RENEWED UNLESS YOU SWITCH OFF THE RECURRING BILLING ON THE SETTINGS.<br></br><br>
           </br>
-          The membership renewal fees will be the rates available at the time of renewal. If you renew your membership, the time will start on the same day you renew. SDC does not take responsibility for renewal fees if member fails to switch off their recurring billing. All sales are final and no refund are offered.
+          The membership renewal fees will be the rates available at the time of renewal. If you renew your membership, the time will start on the same day you renew. Swinxter does not take responsibility for renewal fees if member fails to switch off their recurring billing. All sales are final and no refund are offered.
           </p>
         </div>
         <div style={{display: "flex", flexWrap: "wrap", justifyContent: "space-evenly", marginTop: "50px"}}>

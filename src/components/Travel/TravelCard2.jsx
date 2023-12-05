@@ -163,7 +163,7 @@ const [age2,setage2]=useState("")
           {formatDate(travel.startDate)} to {formatDate(travel.endDate)}
           </span>
         </div>
-        <p className="text-sm"><span className="text-orange">Resort:</span> Taj hotel</p>
+        <p className="text-sm"><span className="text-orange">Resort:</span>{" "}{travel.resort}</p>
         <p className="travel_desc text-sm font-body_font text-[#FF0000]">{travel.description}</p>
       </div>
     </div>

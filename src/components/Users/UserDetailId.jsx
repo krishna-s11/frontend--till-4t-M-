@@ -156,11 +156,13 @@ const RenderedStyle={
                   Send Friend Request
                 </button>))
                 }
+                <a href="https://social-messenger-iota.vercel.app/" target="_blank">
                 <button
                   className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
                 >
                   Message
                 </button>     
+                </a>
           </div>:null}
        </div>
      </div>

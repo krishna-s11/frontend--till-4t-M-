@@ -1,10 +1,13 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import Navbar from '../components/Layout/Navbar';
+import Footer from '../components/Layout/Footer';
+import "./styles/legal.css"
 
 const LegalPage = () => {
     const index = useParams().index;
     const protectKid = [
-        "In our ongoing efforts at AdultFriendFinder to make your experience as enjoyable and safe as possible, we have created this document to help parents understand how to protect their children from inappropriate content on the Internet.",
+        "In our ongoing efforts at Swinxter to make your experience as enjoyable and safe as possible, we have created this document to help parents understand how to protect their children from inappropriate content on the Internet.",
         "To protect your family, the first step would be to install parental control software on your computer. The best known and most effective programs are CyberPatrol, Net Nanny and Safety Surf. Some of the Internet providers have content filtering included with their services. Please check with your Internet Service Provider if this option is offered.",
         "Parental control software blocks access to specific websites and online content. In most cases, when you purchase this type of software, it already contains a large list of sites inappropriate for children. You can then update this software on the manufacturer's website or, most of the time, the software update is done automatically.",
         "Another way this software works is to block sites using keywords, such as 'sex'. However, filtering apps aren't just about blocking access to adult content. You can configure the application to filter other topics such as: tobacco, drugs, alcohol, violence and racism.",
@@ -16,7 +19,10 @@ const LegalPage = () => {
         "Explaining the dangers that exist on the Internet and supervising your children when they are on the Internet remain the best ways to protect them.",
     ]
   return (
-    <div className="home_page bg-black py-8 px-6 rounded-2xl">
+    <>
+    <Navbar />
+    <div className='legal_page'>
+    <div className="legal_container bg-light-grey py-8 px-6" style={{color: "#fff"}}>
       <div className="mb-20">
         <div className="flex justify-between flex-wrap gap-5 items-center mb-5 sm:mb-8">
             <h3 className="text-2xl sm:text-5xl leading-none font-bold">
@@ -74,7 +80,7 @@ const LegalPage = () => {
                     <li>There is no substitute for caution when communicating with a stranger who wants to meet you.</li>
                     <li>You should never include your last name, email address, home address, telephone number, place of work or any other identifying information in your Internet profile or in your first emails. Stop communicating with anyone who insists on personal or financial information or who tries to trick you into revealing it.</li>
                     <li>If you choose to have a one-on-one meeting with another member, you must always inform a family member or significant other of the meeting location and time of your return. Never accept someone to pick you up from your home. Always bring your own transportation and request to meet in a busy public place.</li>
-                    <li>AdultFriendFinder does not do criminal background investigations.</li>
+                    <li>Swinxter does not do criminal background investigations.</li>
                 </ol>
             </>
             :null
@@ -82,14 +88,14 @@ const LegalPage = () => {
         {
             index==="report"?
             <>
-                <p>Under its Terms of Service , AdultFriendFinder prohibits its members from engaging in illegal acts such as prostitution, sex trafficking, and endangerment. Additionally, AdultFriendFinder prohibits its advertising providers from sending commercial emails and using other promotional methods that may violate applicable law and/or be inappropriate (e.g. general purpose sexually explicit material or website not intended for adults). If you are aware of any of the above activities, please contact us immediately using the form below so that we can investigate it and take further action, if appropriate. THANKS.</p>
-                <select name="" id="" style={{backgroundColor: "#2A2D37", padding: "10px", marginTop: "40px"}}>
+                <p>Under its Terms of Service , Swinxter prohibits its members from engaging in illegal acts such as prostitution, sex trafficking, and endangerment. Additionally, Swinxter prohibits its advertising providers from sending commercial emails and using other promotional methods that may violate applicable law and/or be inappropriate (e.g. general purpose sexually explicit material or website not intended for adults). If you are aware of any of the above activities, please contact us immediately using the form below so that we can investigate it and take further action, if appropriate. THANKS.</p>
+                <select name="" id="" style={{backgroundColor: "#2A2D37", padding: "10px", marginTop: "40px", outline: "1px solid #777"}}>
                     <option value="">Abuse</option>
                     <option value="">Sexually explicit advertisements</option>
                     <option value="">Prostitution, Sex Trafficking and Endangerment</option>
                 </select><br></br>
                 <div>
-                    <textarea style={{marginTop: "30px", padding: "10px", width: "413px", backgroundColor: "#2A2D37", height: "300px"}}placeholder='Provide the details'/>
+                    <textarea style={{marginTop: "30px", padding: "10px", width: "413px", backgroundColor: "#2A2D37", height: "300px", outline: "1px solid #777"}}placeholder='Provide the details'/>
                 </div>
                 <button style={{padding: "8px 20px", background: "linear-gradient(46deg, #F79220 55.15%, #F94A2B 82%)", marginTop: "20px", width: "413px"}}>Report</button>
             </>
@@ -97,6 +103,9 @@ const LegalPage = () => {
         }
       </div>
     </div>
+    </div>
+    <Footer />
+    </>
   )
 }
 

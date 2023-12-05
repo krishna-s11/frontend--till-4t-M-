@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 const Checkout = () => {
     const title = useParams().title;
   return (
-    <div style={{width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center",backgroundColor: "#000"}}>
+    <div style={{width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center",backgroundColor: "#111"}}>
         <CheckoutCard title={title} />
     </div>
   )

@@ -184,6 +184,7 @@ const Sidebar = () => {
       submenus: [],
       path: "/travel-page",
     },
+    { title: "Membership", submenus: [], path: "/membership" },
     {
       title: "Setting",
       submenus: [
@@ -196,7 +197,6 @@ const Sidebar = () => {
           title: "My Points",
           submenus: [{ title: "Top up points", submenus: [] }],
         },
-        { title: "Membership", submenus: [], path: "/membership" },
         { title: "Support", submenus: [] },
         { title: "About", submenus: [], path: "/about" },
         { title: "Blocked", submenus: [] }

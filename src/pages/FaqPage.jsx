@@ -39,16 +39,11 @@ const FaqPage = () => {
   const faqs = [
     {
       question: 'What is the swinger lifestyle?',
-      answer: 'IThe swinger lifestyle is a form of consensual non-monogamy where individuals or couples engage in sexual activities with others outside their primary relationship. It often involves couples swapping partners for sexual experiences, but the extent of involvement varies from soft swaps (limited to certain activities) to full swaps (engaging in intercourse).',
+      answer: 'The swinger lifestyle is a form of consensual non-monogamy where individuals or couples engage in sexual activities with others outside their primary relationship. It often involves couples swapping partners for sexual experiences, but the extent of involvement varies from soft swaps (limited to certain activities) to full swaps (engaging in intercourse).',
     },
     {
       question: 'Is swinging the same as an open relationship or polyamory?',
       answer: 'No, swinging is distinct from open relationships and polyamory. Swinging primarily focuses on sexual exploration and typically involves couples engaging in sexual activities with others. Open relationships and polyamory, on the other hand, emphasize emotional connections and can involve multiple romantic and sexual partners.      ',
-    },
-    {
-      question: 'What should I do if I forgot my password?',
-      answer: 'No, swinging is distinct from open relationships and polyamory. Swinging primarily focuses on sexual exploration and typically involves couples engaging in sexual activities with others. Open relationships and polyamory, on the other hand, emphasize emotional connections and can involve multiple romantic and sexual partners.',
-
     },
     {
       question: 'What should I expect at a swinger event or party?',
@@ -65,91 +60,26 @@ const FaqPage = () => {
       question: 'Are swingers at risk of contracting sexually transmitted infections (STIs)?',
       answer: "Any sexual activity carries some risk of STIs. Swingers should use protection, get regular STI testing, and be open about their sexual health with potential partners. Responsible sexual behaviour and safer sex practices are essential in minimizing these risks.Remember that the swinger lifestyle is about consent, communication, and exploring consensual sexual experiences with like-minded individuals. It's important to prioritize the emotional and physical well-being of all parties involved in any swinger encounter.",
     },
-    
     {
-      question: 'How do I find users near me?',
-      answer: 'To discover users near you, go to the "Nearby" feature in the app. This section displays profiles of users in your proximity. Adjust your location settings for accurate results and explore potential matches nearby.',
-    },
-    {
-      question: 'Can I create events on Hot-Date app?',
-      answer: 'Yes, you can! Hot-Date app allows users to create events. Simply go to the "Events" section, click on "Create Event," fill in the details, and invite other users to join. Its a great way to plan and share exciting activities.',
-    },
-    {
-      question: 'How can I join events created by other users?',
-      answer: 'To join an event, visit the "Events" section and explore the available activities. Click on an event you are interested in and select the Join option. You can then chat with other participants and coordinate details.',
-    },
-    {
-      question: 'What is a Club Card, and how can I create one?',
-      answer: 'Club Cards are created by party and club owners to invite users to join their events. If you own a venue, go to the "Club Cards" section, click on "Create Card," and fill in the details. Users can discover and join your club events through these cards.',
-    },
-    {
-      question: 'How can I send a friend request on Hot-Date app?',
-      answer: 'To send a friend request, visit the profile of the user you want to connect with. Click on the "Add Friend" button, and once they accept your request, you can start chatting and planning activities together.',
-    },
-    {
-      question: 'Is there a chat feature on Hot-Date app?',
-      answer: 'Yes, Hot-Date app includes a chat feature. Once you match with someone or become friends, you can start chatting within the app. Use the chat to get to know each other better, plan events, or share exciting updates.',
-    },
-    {
-      question: "How do I find other swingers or lifestyle events?",
-      answer:
-        "There are various ways to connect with the swinger community:\n" +
-        "- Online swinger websites and forums: Many dedicated websites and forums exist where swingers can create profiles, interact with others, and find events in their area.\n" +
-        "- Swinger clubs and parties: Many cities have swinger clubs or host lifestyle parties where like-minded individuals can meet and socialize.\n" +
-        "- Social media: Some swingers use social media platforms to connect and organize events discreetly."
-    },
-    {
-      question: "How can I ensure safety in the swinger lifestyle?",
-      answer:
-        "Safety is paramount in the swinger community. Here are some key safety tips:\n" +
-        "- Communicate openly with your partner(s) about boundaries, desires, and limits.\n" +
-        "- Use protection, such as condoms, to prevent the spread of sexually transmitted infections.\n" +
-        "- Verify consent from all parties involved before engaging in any sexual activity.\n" +
-        "- Get to know potential partners and exchange relevant health information.\n" +
-        "- Trust your instincts and leave any situation that makes you uncomfortable."
-    },
-    {
-      question: "What should I expect at a swinger event or party?",
-      answer:
-        "Expectations can vary depending on the event and location. Typically, swinger events provide a safe, non-judgmental space for adults to socialize, dance, and potentially engage in sexual activities if they choose to. It’s important to respect the rules and guidelines of the event and obtain clear consent before initiating any sexual activity."
-    },
-    {
-      question: "Can anyone become a swinger?",
-      answer:
-        "Swinging is consensual, and participation is entirely voluntary. Anyone interested in exploring the lifestyle can do so, provided they communicate openly, respect boundaries, and prioritize safety and consent. It’s essential to be honest about your intentions and desires with potential partners."
-    },
-    {
-      question: "How do I deal with jealousy in the swinger lifestyle?",
-      answer:
-        "Jealousy is a common emotion in any non-monogamous relationship. Open and honest communication with your partner(s) is key to addressing jealousy. Establish boundaries and agreements that make both partners comfortable. It’s also essential to work on self-confidence and self-esteem to better manage jealousy when it arises."
-    },
-    {
-      question: "Are swingers at risk of contracting sexually transmitted infections (STIs)?",
-      answer:
-        "Any sexual activity carries some risk of STIs. Swingers should use protection, get regular STI testing, and be open about their sexual health with potential partners. Responsible sexual behavior and safer sex practices are essential in minimizing these risks.\n" + 
-        "Remember that the swinger lifestyle is about consent, communication, and exploring consensual sexual experiences with like-minded individuals. It's important to prioritize the emotional and physical well-being of all parties involved in any swinger encounter.\n" +
-        "Why is it crucial to discuss rules and boundaries before swinging, and what are some key considerations to keep in mind during this conversation?\n" + 
-        "1.	Full Communication: Both partners must agree to open and honest communication about their feelings, desires, and concerns throughout the swinging experience.\n" +
-        "2. Consent: Agree that consent is paramount, and either partner can veto a situation or change their mind at any time without judgment.\n" +
-        "3.	Safe Sex: Make it a rule to always practice safe sex with other partners and to regularly get tested for sexually transmitted infections.\n"+
-        "4.	Boundaries on Locations: Decide if you're comfortable swinging only at designated parties or clubs, or if private encounters are acceptable and under what circumstances\n "+
-        "5. Privacy: Establish boundaries regarding sharing photos or information about your swinging experiences with others outside your partnership.\n" +
-        "6. Limits on Intimacy: Determine the level of intimacy you're comfortable with, such as whether kissing, oral sex, or penetrative sex with others is permitted.\n" +
-        "7.	Screening Partners: Decide if you'll both have an equal say in choosing potential partners and establish criteria for selecting them.\n" +
-        "8. Frequency and Timing: Establish how often you'll engage in swinging activities and whether there are time restrictions (e.g., only on weekends).\n" +
-        "9. Alcohol and Drugs: Discuss whether alcohol or recreational drugs will be involved and, if so, set limits on their use to ensure consent and safety.\n "+
-        "10. Aftercare: Agree on a plan for emotional aftercare, such as spending time together, discussing feelings, or seeking counselling if needed, to ensure both partners feel supported and secure.\n "
-    },
-    {
-      question: "What are the key considerations in the swinger lifestyle?",
-      answer:
-        "Remember that the swinger lifestyle is about consent, communication, and exploring consensual sexual experiences with like-minded individuals. It’s important to prioritize the emotional and physical well-being of all parties involved in any swinger encounter."
+      question: "Why is it crucial to discuss rules and boundaries before swinging, and what are some key considerations to keep in mind during this conversation?",
+      answer: 
+        "Full Communication: Both partners must agree to open and honest communication about their feelings, desires, and concerns throughout the swinging experience.\n" +
+        "Consent: Agree that consent is paramount, and either partner can veto a situation or change their mind at any time without judgment.\n" +
+        "Safe Sex: Make it a rule to always practice safe sex with other partners and to regularly get tested for sexually transmitted infections.\n"+
+        "Boundaries on Locations: Decide if you're comfortable swinging only at designated parties or clubs, or if private encounters are acceptable and under what circumstances\n "+
+        "Privacy: Establish boundaries regarding sharing photos or information about your swinging experiences with others outside your partnership.\n" +
+        "Limits on Intimacy: Determine the level of intimacy you're comfortable with, such as whether kissing, oral sex, or penetrative sex with others is permitted.\n" +
+        "Screening Partners: Decide if you'll both have an equal say in choosing potential partners and establish criteria for selecting them.\n" +
+        "Frequency and Timing: Establish how often you'll engage in swinging activities and whether there are time restrictions (e.g., only on weekends).\n" +
+        "Alcohol and Drugs: Discuss whether alcohol or recreational drugs will be involved and, if so, set limits on their use to ensure consent and safety.\n "+
+        "Aftercare: Agree on a plan for emotional aftercare, such as spending time together, discussing feelings, or seeking counselling if needed, to ensure both partners feel supported and secure.\n "
     },
     {
       question:"Before starting swinging, what are some rules and boundaries that my partner and I should discuss?",
-      answer:"1. No 'Taking One for the Team\n "+
+      answer:
+      "No 'Taking One for the Team\n "+
       "This means that neither of you will engage in play if one of you isn't attracted to your play partner or simply doesn't feel like playing at that particular time. It's important that neither of you endures something you dislike just for the sake of the other's enjoyment. Understand each other's preferences in a play partner and establish clear ways to communicate whether it's a yes or no for proceeding. Using code words or signals can be helpful in this regard.\n"+
-      "2.	NO KISSING RULE\n"+
+      "NO KISSING RULE\n"+
       "This rule is common for beginners, but many often let it go as they become more comfortable. If you're new to intimacy and kissing feels more comfortable, stick to this rule. Some people find it challenging to avoid kissing during passionate moments, and if your partner refuses to engage without it, it's their loss!\n"+
 
       "3.	NO FULL SWAP (NO PENETRATION) RULE\n"+
@@ -188,19 +118,12 @@ const FaqPage = () => {
       </div>
       <div className="pt-10 container mx-auto">
         <div className="grid gap-y-2 max-w-6xl mx-auto">
-          
-    
-   <Accordion style={{ borderLeft: alwaysOpen  ? '4px solid #f19815' : 'none',paddingLeft: alwaysOpen ? '4px' : 'none' }} open={alwaysOpen}>
-        <AccordionHeader onClick={handleAlwaysOpen}>Can I use the Hot-Date app on multiple devices?</AccordionHeader>
-        <AccordionBody style={{color:"orange",fontSize:"16px"}}>Yes, you can use the Hot-Date app on multiple devices. Simply log in with your account credentials, and your data will be synchronized across all your devices.
-
-        </AccordionBody>
-      </Accordion>
       {
   faqs.map((el, i) => (
     <Accordion key={i + 1} open={open === i + 1}  style={{ borderLeft: open === i + 1 ? '4px solid #f19815' : 'none',paddingLeft: open === i + 1 ? '4px' : 'none' }} icon={<Icon id={i + 1} open={open} /> }>
       <AccordionHeader
         className="text-lg font-medium"
+        style={{marginRight: "auto", textAlign: "left"}}
         onClick={() => handleOpen(i + 1)}
       >
         {el.question}
@@ -209,7 +132,7 @@ const FaqPage = () => {
         {el.answer.includes('\n') ? (
           <ul>
             {el.answer.split('\n').map((item, index) => (
-              <li key={index}>{index>=1 && `${index}).`}{item}</li>
+              <li key={index} style={{marginBottom: "5px"}}>{index>=1 && `${index}).`}{item}</li>
             ))
             }
           </ul>

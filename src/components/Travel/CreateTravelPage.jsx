@@ -16,6 +16,7 @@ const CreateTravelPage = () => {
   const [travel, setTravel] = useState({
     Location: "",
     start_date: "",
+    resort: "",
     end_date: "",
     description: "",
     userInfo:""
@@ -80,6 +81,7 @@ useEffect(()=>{
     formdata.append("name",userInfo.username)
     formdata.append("locationto", JSON.stringify(travel?.Location));
     formdata.append("startDate", travel.start_date);
+    formdata.append("resort", travel.resort);
     formdata.append("endDate", travel.end_date);
     formdata.append("interested",JSON.stringify(selectedOptions));
     formdata.append("description", travel.description);
@@ -94,6 +96,7 @@ useEffect(()=>{
         "Content-Type": "multipart/form-data",
       },
     };
+    console.log(formdata);
     try {
       const data = await api.post(`/createTravle`, formdata,config);
 
@@ -122,6 +125,7 @@ useEffect(()=>{
         setTravel({
           Location: "",
           start_date: "",
+          resort: "",
           end_date: "",
           description: "",
         });
@@ -132,14 +136,17 @@ useEffect(()=>{
       console.log(error);
     }
   };
+
+  console.log(travel)
  
 
   const options2 = [
-    { value: 'astoria_current', label: 'Astoria Current' },
-    { value: 'motel_magic', label: 'Motel Magic' },
-    { value: 'southern_resort', label: 'Southern Resort' },
-    { value: 'countryside_inn', label: 'Countryside Inn' },
-    { value: 'blossom_bed', label: 'Blossom Bed' },
+    { value: 'Astoria Current', label: 'Astoria Current' },
+    { value: 'Taj Hotel', label: 'Taj Hotel' },
+    { value: 'Motel Magic', label: 'Motel Magic' },
+    { value: 'Southern Resort', label: 'Southern Resort' },
+    { value: 'Countryside Inn', label: 'Countryside Inn' },
+    { value: 'Blossom Bed', label: 'Blossom Bed' },
   ]
   return (
     <div className="bg-white rounded-40px">
@@ -215,7 +222,10 @@ useEffect(()=>{
                 >
                   Resort
                 </label>
-                <select className="bg-black border rounded-md md:rounded-none md:border-none md:border-l-2 md:rounded-r-md border-orange focus:outline-none focus-visible:none w-full md:w-[calc(100%-120px)] xl:w-[calc(100%-195px)] h-[49px] text-white font-normal xl:text-lg rounded-r-md text-sm px-2 xl:px-4 py-2.5 text-start placeholder:text-lg placeholder:text-gray items-center flex justify-between">
+                <select className="bg-black border rounded-md md:rounded-none md:border-none md:border-l-2 md:rounded-r-md border-orange focus:outline-none focus-visible:none w-full md:w-[calc(100%-120px)] xl:w-[calc(100%-195px)] h-[49px] text-white font-normal xl:text-lg rounded-r-md text-sm px-2 xl:px-4 py-2.5 text-start placeholder:text-lg placeholder:text-gray items-center flex justify-between" 
+                  onChange={handleChange}
+                  name="resort"
+                >
                 <option value={""}>Please select</option>
                   {options2.map((el)=>(
                     <option value={el.value}>{el.label}</option>

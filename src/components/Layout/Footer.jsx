@@ -26,8 +26,8 @@ const Footer = () => {
                 take appropriate measures to protect themselves during any
                 online interactions.
                 <p className="text-sm font-body_font my-2">
-                 <Link to="legal/dating_safety">Dating Safety</Link> |<Link to="legal/protect_kids"> Protect Kids</Link> |<Link to="/legal/report"> Report Abuse Or Sexually
-                  Explicit Ads </Link>| <Link to="legal/compliance">18 U.S.C. 2257 Record Keeping Requirements 
+                 <Link to="/legal/dating_safety">Dating Safety</Link> |<Link to="/legal/protect_kids"> Protect Kids</Link> |<Link to="/legal/report"> Report Abuse Or Sexually
+                  Explicit Ads </Link>| <Link to="/legal/compliance">18 U.S.C. 2257 Record Keeping Requirements 
                   Compliance Statement</Link>
                 </p>
                 <p className="text-sm font-body_font">

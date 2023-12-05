@@ -26,6 +26,7 @@ useEffect(()=>{
   const [filter, setFilter] = useState({
     open_for: "",
     location: "",
+    resort: "",
     date: "",
    })
 
@@ -41,12 +42,17 @@ useEffect(()=>{
   const handleCheck=(e)=>{
     e.preventDefault()
     let filtered = travels;
-    if(filter.open_for){
-  
-    filtered = filtered.filter((el) =>
-    el.interested.some((interest) => interest === filter.open_for)
-  );
-    }
+    if(filter.open_for.length > 0){
+    
+      filtered = filtered.filter((el) =>
+      el.interested.some((interest) => interest === filter.open_for)
+    );
+  }
+  if(filter.resort){
+    filtered = filtered.filter(el => {
+      return el.resort === filter.resort
+    })
+  }
 
     if (filter.date) {
     
@@ -69,11 +75,9 @@ console.log(filterKeywords)
     });
   });
     }
-console.log(filtered)
     setTravel(filtered);
     setFilterDropdown(false)
   }
-
 
 
   const handleReset=()=>{
@@ -110,12 +114,12 @@ console.log(filtered)
   const isUserTravelPlan = currentPost?.some(el => el?.userId?._id === userInfo?._id);
 
   const options2 = [
-    { value: 'taj_hotel', label: 'Taj Hotel' },
-    { value: 'astoria_current', label: 'Astoria Current' },
-    { value: 'motel_magic', label: 'Motel Magic' },
-    { value: 'southern_resort', label: 'Southern Resort' },
-    { value: 'countryside_inn', label: 'Countryside Inn' },
-    { value: 'blossom_bed', label: 'Blossom Bed' },
+    { value: 'Astoria Current', label: 'Astoria Current' },
+    { value: 'Taj Hotel', label: 'Taj Hotel' },
+    { value: 'Motel Magic', label: 'Motel Magic' },
+    { value: 'Southern Resort', label: 'Southern Resort' },
+    { value: 'Countryside Inn', label: 'Countryside Inn' },
+    { value: 'Blossom Bed', label: 'Blossom Bed' },
   ]
 
 
@@ -187,8 +191,9 @@ console.log(filtered)
                 <div className="my-4 mb-6">
                   <label for="cars">Resort :</label>
                   <select name="resort" id="resort"
-                    className="w-full mt-2 py-2 px-3 border border-black bg-[#2A2D37] rounded-[5px]">
-                     
+                    className="w-full mt-2 py-2 px-3 border border-black bg-[#2A2D37] rounded-[5px]"
+                    onChange={handleChange}
+                    >
                 <option value="">Please Select</option>
                 {options2.map((el)=>(
                     <option value={el.value}>{el.label}</option>

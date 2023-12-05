@@ -133,7 +133,6 @@ if(isAuthenticated){
 <Route path="/sent_request" element={<ProtectedRoute><SentRequest/></ProtectedRoute>} />
 <Route path="/recieved_request" element={<ProtectedRoute><RecievedRequests/></ProtectedRoute>} />
 <Route path="/membership" element={<ProtectedRoute><Membership/></ProtectedRoute>} />
-<Route path="/legal/:index" element={<ProtectedRoute><LegalPage/></ProtectedRoute>} />
 {/* <Route path="/message" element={<ProtectedRoute><Message/></ProtectedRoute>} /> */}
 
 {/* CLUBS */}
@@ -151,6 +150,7 @@ if(isAuthenticated){
 <Route path="/edit_travel/:travelid" element={<ProtectedRoute><EditTravelPage /></ProtectedRoute>} />
 
 </Route>
+<Route path="/legal/:index" element={<LegalPage />} />
    </Routes>
 
     </>
