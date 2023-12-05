@@ -24,7 +24,7 @@ const Navbar = ({ Lplayout }) => {
           <div className="w-[150px]">
             <Link to={isAuthenticated?"/home" :"/"}>
               <img
-                src="/landingPage/images/landing-logo.png"
+                src="/landingPage/images/SwinxterLogo-bg.png"
                 className="cursor-pointer max-w-100px block"
                 alt=""
               />
@@ -49,9 +49,10 @@ const Navbar = ({ Lplayout }) => {
               <div className="flex lg:hidden items-center justify-between gap-5 mb-10 px-4">
                 <Link  to={isAuthenticated?"/home" :"/"} className="flex items-center">
                   <img
-                    src="/landingPage/images/SwinxterLogo.png"
+                    src="/landingPage/images/SwinxterLogo-bg.png"
                     className="mr-3 logo_image max-w-[100px] xl:max-w-[215px] h-auto"
                     alt="Logo"
+                    style={{marginLeft: "30px"}}
                   />
                 </Link>
                 <span
