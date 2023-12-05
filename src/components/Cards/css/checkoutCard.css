@@ -19,6 +19,13 @@
     outline: none;
     border-radius: 10px;
 }
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+  }
 .checkout_card p{
     color: orange;
     margin-left: 8px;

@@ -17,13 +17,13 @@ const CheckoutCard = ({title,price}) => {
         </div>
         <div className='input_holder'>
           <p>Card Number:</p>
-          <input type="text" placeholder='Card Number (Do not use spaces)'/>
+          <input type="number" placeholder='Card Number (Do not use spaces)'/>
         </div>
         <div className='input_holder'>
             <p>Expiry Month:</p>
-            <input type="text" placeholder='MM' style={{width: "20%",marginLeft: "7px"}}/>
+            <input type="number" min="1" max="12" maxLength="2" placeholder='MM' style={{width: "20%",marginLeft: "7px"}}/>
             <p style={{transform: "translateX(50px)"}}>Expiry Year:</p>
-            <input type="text" placeholder='YY' style={{width: "20%"}}/>
+            <input type="text" placeholder='YYYY' maxLength={4} style={{width: "20%"}}/>
         </div>
         <div className='input_holder'>
             <p>CVV:</p>
