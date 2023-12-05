@@ -8,7 +8,7 @@ const PlansCard = ({title,price}) => {
         <h3>{title} Package</h3>
         <h1>{price}</h1>
         <p>All services included</p>
-        <Link to={`/checkout/${title}`} target="_blank">
+        <Link to={`/checkout/${title}/${price}`} target="_blank">
         <button>Select Plan</button>
         </Link>
     </div>

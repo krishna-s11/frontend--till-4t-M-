@@ -776,7 +776,7 @@ const SinglePerson = () => {
                     </div>
 
                     <div className="bg-[#202020] grid grid-cols-2 px-10 pt-5">
-                      <span>Gender</span>
+                      <span>Gender *</span>
                       <select
                         className="bg-[#202020] text-white text-end"
                         name="gender"

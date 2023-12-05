@@ -109,7 +109,7 @@ if(isAuthenticated){
 <Route path="/user-detail/:id" element={<Layout><ProtectedRoute><UserDetailId /></ProtectedRoute></Layout>} />
 <Route path="/edit-detail" element={<Layout><ProtectedRoute><EditUserDetailsPage /></ProtectedRoute></Layout>} />
 <Route path="editcouple-detail" element={<Layout><ProtectedRoute><CoupleEditDetailPage/></ProtectedRoute></Layout>}/>
-<Route path="/checkout/:title" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+<Route path="/checkout/:title/:price" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
 
 
 <Route  element={<Main_Layout/>}>
