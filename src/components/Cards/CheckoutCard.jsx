@@ -30,7 +30,7 @@ const CheckoutCard = ({title,price}) => {
             <input type="text" placeholder='CVV' style={{width: "45%", marginLeft: "-5px"}}/>
         </div>
         <button>Proceed</button>
-        <p style={{textAlign: "center", marginTop: "30px", color: "#777"}}>All charges are NON refundable. For questions, please contact support.</p>
+        <p style={{textAlign: "center", marginTop: "30px", color: "#777"}}>For questions regarding payments, please contact support.</p>
     </div>
   )
 }
