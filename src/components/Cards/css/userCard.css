@@ -7,6 +7,7 @@
     display: flex;
     margin-right: 20px;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 .user_photo{
     width: 40%;

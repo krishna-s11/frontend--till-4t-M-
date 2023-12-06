@@ -145,11 +145,13 @@ const {user} = useSelector((state)=>state.auth);
                     }
                   </button>
                 }
+                <Link to="https://social-messenger-iota.vercel.app/" target="_blank">
                 <button
                   className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
                 >
                   Message
-                </button>     
+                </button>
+                </Link>     
               </div>
               {/* <p className="text-lg font-body_font">{userInfo?.slogan}</p>
               <p className="text-lg font-body_font">{userInfo?.introduction}</p> */}
