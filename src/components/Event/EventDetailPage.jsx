@@ -15,6 +15,12 @@ import { Context } from "../../Context/context";
 import api from "../../utils/api";
 import { MidLoading } from "../M_used/Loading";
 import { FaArrowLeft } from "react-icons/fa6";
+import "./css/eventDetailPage.css"
+import { IoMdSend } from "react-icons/io";
+import Comments from "./Comments";
+
+
+
 const EventDetailPage = () => {
   const [eventInfo, setEventInfo] = useState({});
   const [isJoined, setIsJoined] = useState(false);
@@ -29,6 +35,8 @@ const EventDetailPage = () => {
   const navigate = useNavigate();
   const data = useParams();
   const eventid = data.id;
+  const [comment,setComment] = useState("");
+  const [commentRender,setCommentRender] = useState(true);
 
   useEffect(()=>{
 setUserInfo(user)
@@ -59,7 +67,7 @@ setUserInfo(user)
   const getPendingReq = async (data) => {
     
     const pendingParticipants = data.participants?.filter(
-      (participant) => participant.status === "Pending"
+      (participant) => participant?.status === "Pending"
     );
 
     const pendingUserData = [];
@@ -79,7 +87,7 @@ setUserInfo(user)
   useEffect(() => {
     getEvent();
     // eslint-disable-next-line
-  }, [updateList, cancleRequest]);
+  }, [updateList, cancleRequest,commentRender]);
 
   let formattedTime;
   let formattedEndTime;
@@ -160,12 +168,12 @@ setUserInfo(user)
   };
   const hasUserJoined = eventInfo.participants?.some(
     (participant) =>
-      participant.user === userInfo._id && participant.status === "Approved"
+      participant.user === userInfo._id && participant?.status === "Approved"
   );
 
   const hasUserPending = eventInfo.participants?.some(
     (participant) =>
-      participant.user === userInfo._id && participant.status === "Pending"
+      participant.user === userInfo._id && participant?.status === "Pending"
   );
   const handlePendingUser = async (userId, status) => {
     try {
@@ -193,6 +201,24 @@ setUserInfo(user)
     });
   };
   console.log(loading, "l");
+
+  const postComment = async (e) => {
+    e.preventDefault();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const data = {
+      userId: userInfo._id,
+      eventId: eventInfo._id,
+      username: userInfo.username,
+      userPhoto: userInfo.image,
+      comment: comment,
+    }
+    const req = await api.post('/events/comment', data, config);
+    setCommentRender(!commentRender);
+  }
 
   return (
     <div className="bg-black pt-0 sm:pt-8 py-8 px-6 rounded-2xl xl:rounded-r-none min-h-full">
@@ -468,6 +494,21 @@ setUserInfo(user)
         <p className="text-base font-body_font" dangerouslySetInnerHTML={{ __html: eventInfo?.description?.replace(/\n/g, '<br />') }}></p>
 
 
+      </div>
+      <div className="my-5 w-full p-5 bg-light-grey rounded-lg">
+        <p className="text-lg text-orange font-semibold mb-3">Comments</p>
+        <input type="text" placeholder="Write a comment" onChange={(e) => {setComment(e.target.value)}} id="comment_box"/>
+        <button id="btn_post" onClick={postComment}><IoMdSend /></button>
+        {
+          eventInfo?.comments?
+          (eventInfo.comments.map((comment,i) => {
+            return(
+              <Comments comment={comment} eventId={eventid} userInfo={userInfo} eventInfo={eventInfo}/>
+            )
+          }))
+          :
+          null
+        }
       </div>
       {/* Photos and Videos */}
 
