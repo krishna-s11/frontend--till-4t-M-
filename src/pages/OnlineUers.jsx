@@ -26,7 +26,7 @@ const OnlineUers = () => {
       <div className="mb-20">
         <div className="flex justify-between flex-wrap gap-5 items-center mb-5 sm:mb-8">
           <h3 className="text-2xl sm:text-5xl leading-none font-bold">
-            Who viewed me
+            Online Users
           </h3>
           {/* <Link to="/event-page" className="primary_btn !text-sm sm:!text-xl">
             View More

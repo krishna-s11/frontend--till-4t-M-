@@ -1,10 +1,9 @@
 .checkout_card{
     width: 600px;
     background-color: #2A2D37;
-    border-radius: 10px;
     padding: 30px 20px;
 }
-.checkout_card h3{
+.checkout_card_holder h3{
     color: orange;
     font-weight: 600;
     font-size: 20px;
@@ -50,4 +49,39 @@ input[type=number] {
 }
 .input_holder input{
     width: 70%;
+}
+.accepted_card_icons{
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    margin-right: 135px;
+}
+.checkout_card_holder{
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.checkout_billing{
+    padding: 30px 20px;
+    background-color: #2A2D37;
+    border-right: 1px solid #777;
+}
+.billing_detail_sec{
+    width: 300px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.billing_detail_sec div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.billing_detail_sec div p:first-child{
+    font-weight: 600;
 }
