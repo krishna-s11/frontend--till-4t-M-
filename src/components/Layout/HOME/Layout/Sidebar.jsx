@@ -137,7 +137,7 @@ const Sidebar = () => {
     {
       title: "Messages",
       submenus: [],
-      externalPath: "https://social-messenger-iota.vercel.app/"
+      path: "/messaging"
     },
     {
       title: "Search",

@@ -72,32 +72,22 @@ const FaqPage = () => {
         "Screening Partners: Decide if you'll both have an equal say in choosing potential partners and establish criteria for selecting them.\n" +
         "Frequency and Timing: Establish how often you'll engage in swinging activities and whether there are time restrictions (e.g., only on weekends).\n" +
         "Alcohol and Drugs: Discuss whether alcohol or recreational drugs will be involved and, if so, set limits on their use to ensure consent and safety.\n "+
-        "Aftercare: Agree on a plan for emotional aftercare, such as spending time together, discussing feelings, or seeking counselling if needed, to ensure both partners feel supported and secure.\n "
+        "Aftercare: Agree on a plan for emotional aftercare, such as spending time together, discussing feelings, or seeking counselling if needed, to ensure both partners feel supported and secure."
     },
     {
       question:"Before starting swinging, what are some rules and boundaries that my partner and I should discuss?",
       answer:
-      "No 'Taking One for the Team\n "+
-      "This means that neither of you will engage in play if one of you isn't attracted to your play partner or simply doesn't feel like playing at that particular time. It's important that neither of you endures something you dislike just for the sake of the other's enjoyment. Understand each other's preferences in a play partner and establish clear ways to communicate whether it's a yes or no for proceeding. Using code words or signals can be helpful in this regard.\n"+
-      "NO KISSING RULE\n"+
-      "This rule is common for beginners, but many often let it go as they become more comfortable. If you're new to intimacy and kissing feels more comfortable, stick to this rule. Some people find it challenging to avoid kissing during passionate moments, and if your partner refuses to engage without it, it's their loss!\n"+
-
-      "3.	NO FULL SWAP (NO PENETRATION) RULE\n"+
-      "Another common rule is the 'no full swap' rule, where some couples prefer only engaging in soft swap activities. This includes kissing, touching, groping, and oral activities, which can be incredibly passionate. Many newcomers to the lifestyle start with this rule, and some experienced individuals transition to it over time. It can help manage emotional concerns, alleviate worries about sexually transmitted infections, and reduce the pressure and performance anxiety associated with full swapping.\n"+
-      "4.	SAME ROOM VERSUS SEPARATE ROOM PLAY RULE\n"+
-      "Choosing whether to engage in same-room or separate-room play comes with its own set of pros and cons. It's essential to discuss and understand what works as a positive and what might be a challenge for both you and your partner. Some couples are comfortable with separate play dates, while others may only be okay with women playing independently. There are also those who prefer everyone to engage together consistently. With numerous potential arrangements, it's crucial to plan based on what you both want, need, and desire. Be open to adjusting this rule – and any others on your list – over time; people, relationships, and emotions evolve. Your rules should adapt to your growth and changes as well.\n"+
-      "5.	NO ANAL RULE\n"+
-      "In the swinging lifestyle, some couples choose to have a 'no anal' rule. While anal play is more common in this community than in the mainstream world, it's essential to communicate and set boundaries that make both partners comfortable. Skilled swingers know how to navigate sensitive areas, but it's entirely up to you and your partner whether you want to explore anal activities. Some may find the experience enjoyable with the right partner, while others might prefer to keep it exclusive. Ultimately, it's your choice and should align with your preferences and comfort levels.\n"+
-      "6.	NO REPEATS RULE\n"+
-      "Some couples follow the 'no repeats' rule, which means they won't engage with the same couple within a specified time frame (like one month, six months, or a year). This helps prevent emotional connections and keeps swinging focused on physical pleasure rather than personal attachments. Many swingers appreciate this rule as it allows them to explore a variety of sexual experiences. However, it's important to adjust this rule based on your own preferences and comfort level.\n"+
-      "7.	NO SOLO COMMUNICATION RULE\n"+
-      "To avoid surprises and misunderstandings, many couples adopt the 'no solo communication' rule. In common scenarios, one person, often the man, manages the online profiles to shield the woman from dealing with fake individuals. When you connect with a genuine couple, it's important to establish how communication will unfold. Some prefer online flirting, while others find it emotionally challenging. One solution is to avoid solo talks and opt for group messages or platforms like KIK, making communication smoother than coordinating group calls.\n"+
-      "8.	CONDOMS REQUIRED RULE\n"+
-      "Before entering the swinging scene, have a conversation with your partner about your condom policy. Determine whether you require condoms for oral activities and if you're comfortable playing with couples who may not always use condoms. In the swinging lifestyle, some couples engage in intercourse without condoms, so it's crucial to discuss and agree upon your comfort zone with your partner before participating in any swinging sessions. Always be mindful of potential health risks before considering play without condoms.\n"+
-      "9.	EVADING OR SEEKING UNICORNS RULE\n"+
-      "Single women, often referred to as 'unicorns’, are highly sought after in the swinging lifestyle. While they can bring excitement, some unicorns may have specific requests to enhance their comfort and security. Despite their allure, some couples choose to avoid playing with unicorns. Even with an amazing unicorn who does nothing wrong, introducing a third person can sometimes lead to unequal experiences or attention, potentially causing issues in the relationship. To keep things simpler, some couples prefer sticking to interactions with other couples, avoiding any feelings of exclusion or oversight.\n"+
-      "10.	DRINKING LIMITS RULE\n"+
-      "Swinging parties often involve a lot of drinks and alcohol, but excessive drinking can hinder the enjoyment of a swinging session. Similar to drug use, overindulgence in alcohol can lead to unintentional rule-breaking. It's important to establish clear rules on alcohol consumption levels. Many swingers tend to drink moderately to avoid alcohol-related mishaps in the company of attractive partners. This rule is particularly helpful for newcomers who may turn to alcohol to ease nerves. Be mindful of your alcohol intake and keep an eye on your partner's as well. If someone has had too much to drink, it might be best to take a break or leave early to ensure everyone's well-being.\n"
+      "\n"+
+      "No 'Taking One for the Team \bThis means that neither of you will engage in play if one of you isn't attracted to your play partner or simply doesn't feel like playing at that particular time. It's important that neither of you endures something you dislike just for the sake of the other's enjoyment. Understand each other's preferences in a play partner and establish clear ways to communicate whether it's a yes or no for proceeding. Using code words or signals can be helpful in this regard.\n"+
+      "NO KISSING RULE\bThis rule is common for beginners, but many often let it go as they become more comfortable. If you're new to intimacy and kissing feels more comfortable, stick to this rule. Some people find it challenging to avoid kissing during passionate moments, and if your partner refuses to engage without it, it's their loss!\n"+
+      "NO FULL SWAP (NO PENETRATION) RULE \bAnother common rule is the 'no full swap' rule, where some couples prefer only engaging in soft swap activities. This includes kissing, touching, groping, and oral activities, which can be incredibly passionate. Many newcomers to the lifestyle start with this rule, and some experienced individuals transition to it over time. It can help manage emotional concerns, alleviate worries about sexually transmitted infections, and reduce the pressure and performance anxiety associated with full swapping.\n"+
+      "SAME ROOM VERSUS SEPARATE ROOM PLAY RULE \bChoosing whether to engage in same-room or separate-room play comes with its own set of pros and cons. It's essential to discuss and understand what works as a positive and what might be a challenge for both you and your partner. Some couples are comfortable with separate play dates, while others may only be okay with women playing independently. There are also those who prefer everyone to engage together consistently. With numerous potential arrangements, it's crucial to plan based on what you both want, need, and desire. Be open to adjusting this rule – and any others on your list – over time; people, relationships, and emotions evolve. Your rules should adapt to your growth and changes as well.\n"+
+      "NO ANAL RULE \bIn the swinging lifestyle, some couples choose to have a 'no anal' rule. While anal play is more common in this community than in the mainstream world, it's essential to communicate and set boundaries that make both partners comfortable. Skilled swingers know how to navigate sensitive areas, but it's entirely up to you and your partner whether you want to explore anal activities. Some may find the experience enjoyable with the right partner, while others might prefer to keep it exclusive. Ultimately, it's your choice and should align with your preferences and comfort levels.\n"+
+      "NO REPEATS RULE\bSome couples follow the 'no repeats' rule, which means they won't engage with the same couple within a specified time frame (like one month, six months, or a year). This helps prevent emotional connections and keeps swinging focused on physical pleasure rather than personal attachments. Many swingers appreciate this rule as it allows them to explore a variety of sexual experiences. However, it's important to adjust this rule based on your own preferences and comfort level.\n"+
+      "NO SOLO COMMUNICATION RULE\bTo avoid surprises and misunderstandings, many couples adopt the 'no solo communication' rule. In common scenarios, one person, often the man, manages the online profiles to shield the woman from dealing with fake individuals. When you connect with a genuine couple, it's important to establish how communication will unfold. Some prefer online flirting, while others find it emotionally challenging. One solution is to avoid solo talks and opt for group messages or platforms like KIK, making communication smoother than coordinating group calls.\n"+
+      "CONDOMS REQUIRED RULE\bBefore entering the swinging scene, have a conversation with your partner about your condom policy. Determine whether you require condoms for oral activities and if you're comfortable playing with couples who may not always use condoms. In the swinging lifestyle, some couples engage in intercourse without condoms, so it's crucial to discuss and agree upon your comfort zone with your partner before participating in any swinging sessions. Always be mindful of potential health risks before considering play without condoms.\n"+
+      "EVADING OR SEEKING UNICORNS RULE\bSingle women, often referred to as 'unicorns’, are highly sought after in the swinging lifestyle. While they can bring excitement, some unicorns may have specific requests to enhance their comfort and security. Despite their allure, some couples choose to avoid playing with unicorns. Even with an amazing unicorn who does nothing wrong, introducing a third person can sometimes lead to unequal experiences or attention, potentially causing issues in the relationship. To keep things simpler, some couples prefer sticking to interactions with other couples, avoiding any feelings of exclusion or oversight.\n"+
+      "DRINKING LIMITS RULE\bSwinging parties often involve a lot of drinks and alcohol, but excessive drinking can hinder the enjoyment of a swinging session. Similar to drug use, overindulgence in alcohol can lead to unintentional rule-breaking. It's important to establish clear rules on alcohol consumption levels. Many swingers tend to drink moderately to avoid alcohol-related mishaps in the company of attractive partners. This rule is particularly helpful for newcomers who may turn to alcohol to ease nerves. Be mindful of your alcohol intake and keep an eye on your partner's as well. If someone has had too much to drink, it might be best to take a break or leave early to ensure everyone's well-being."
     }
   ];
   
@@ -107,6 +97,8 @@ const FaqPage = () => {
     fontWeignt:"500",
     fontSize:"16px"
   }
+
+  let ind = 0
 
   return (
     <div className="bg-black-20">
@@ -131,8 +123,14 @@ const FaqPage = () => {
       <AccordionBody style={open === i + 1 && accordioncss}>
         {el.answer.includes('\n') ? (
           <ul>
-            {el.answer.split('\n').map((item, index) => (
-              <li key={index} style={{marginBottom: "5px"}}>{index>=1 && `${index}).`}{item}</li>
+            {el.answer.split('\n').map((item, i) => (
+              <>
+              {
+                item.includes("\b")?(
+                      item.split("\b").map((item,index) => (<li key={index} style={index<1?{marginBottom: "5px", fontWeight: "600"}:{marginBottom: "10px", listStyle: "none"}}>{index<1 && `${i}).`}{item}</li>)))
+                :<li key={i} style={{marginBottom: "5px"}}>{i>=1 && `${i}).`}{item}</li>
+              }
+              </>
             ))
             }
           </ul>

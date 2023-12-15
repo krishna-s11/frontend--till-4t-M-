@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 import ProtectedRoute from './Context/ProtectedRoute';
@@ -53,12 +53,17 @@ import { useSelector } from 'react-redux';
 import Membership from './pages/Membership';
 import Checkout from './pages/Checkout';
 import LegalPage from './pages/LegalPage';
+import Messaging from './pages/Messaging';
+import { StreamChat } from "stream-chat";
+import { useChatContext } from './Context/ChatContext';
+
 function App() {
 const {isAuthenticated} = useSelector((state)=>state.auth);
 let location = useLocation();
 const { pathname } = location;
 const navigate = useNavigate()
 const from = location.state?.from?.pathname || "/home";
+const {setChatClient} = useChatContext();
 
 useEffect(() => {
   window.scrollTo(0, 0);
@@ -84,6 +89,7 @@ if(isAuthenticated){
 }
   },[isAuthenticated])
 
+
   return (
     <>
     <Routes>
@@ -96,7 +102,7 @@ if(isAuthenticated){
     
     <Route path='/' element={<Layout><Home/></Layout>} />
     <Route path="signup" element={<Layout><Signup /> </Layout>} />
-   <Route path="login" element={<Layout><Login /></Layout>} />
+    <Route path="login" element={<Layout><Login/></Layout>} />
    <Route path="forgot" element={<Layout><ForgotPassword /></Layout>} />
    <Route path="/single/:userId" element={<SinglePerson/>} />
    <Route path="/couple/:userId" element={<SignUpCouple/>} />
@@ -133,7 +139,7 @@ if(isAuthenticated){
 <Route path="/sent_request" element={<ProtectedRoute><SentRequest/></ProtectedRoute>} />
 <Route path="/recieved_request" element={<ProtectedRoute><RecievedRequests/></ProtectedRoute>} />
 <Route path="/membership" element={<ProtectedRoute><Membership/></ProtectedRoute>} />
-{/* <Route path="/message" element={<ProtectedRoute><Message/></ProtectedRoute>} /> */}
+<Route path="/messaging" element={<ProtectedRoute><Messaging /></ProtectedRoute>} />
 
 {/* CLUBS */}
 <Route path="/club-page" element={<ProtectedRoute><ClubPage /></ProtectedRoute>} />

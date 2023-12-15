@@ -10,6 +10,7 @@ import './index.css';
 import { ContextProvider } from ".//Context/context";
 import store from './redux/store';
 import reportWebVitals from './reportWebVitals';
+import ChatContextProvider from "./Context/ChatContext";
 const CLIENT_KEY = process.env.REACT_APP_GOOGLE_CLIENT_KEY;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,7 +18,7 @@ root.render(
     <Provider store={store}>
       <Router>
         <ContextProvider>
-        <App />
+          <App />
         </ContextProvider>
       </Router>
     </Provider>

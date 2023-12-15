@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate,useLocation } from "react-router-dom";
 import { calculateAge } from "../utils/CalculateAge";
 import Loading from "../components/M_used/Loading";
+import { useChatContext } from "../Context/ChatContext";
 
 
 const CoupleDetailPage = ({userInfo,handleRemove,handleSendRequest,handleCancelRequest,sent,loading}) => {
@@ -10,6 +11,8 @@ const location = useLocation();
 const [age, setAge] = useState("");
   const [age2,setage2]=useState("")
 const {user} = useSelector((state)=>state.auth);
+const {startDMChatRoom} = useChatContext();
+const navigate = useNavigate();
 // const [userInfo,setUserInfo]=useState(user);
 // useEffect(()=>{
 //   setUserInfo(user)
@@ -145,13 +148,12 @@ const {user} = useSelector((state)=>state.auth);
                     }
                   </button>
                 }
-                <Link to="https://social-messenger-iota.vercel.app/" target="_blank">
                 <button
                   className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                  onClick={() => {navigate("/messaging"); startDMChatRoom(userInfo._id); }}
                 >
                   Message
-                </button>
-                </Link>     
+                </button> 
               </div>
               {/* <p className="text-lg font-body_font">{userInfo?.slogan}</p>
               <p className="text-lg font-body_font">{userInfo?.introduction}</p> */}

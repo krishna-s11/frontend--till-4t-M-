@@ -13,6 +13,9 @@ import { toast } from "react-toastify";
 import { Context } from "../../Context/context";
 import api from "../../utils/api";
 import { FaArrowLeft } from "react-icons/fa6";
+import Comments from "../Event/Comments";
+import { IoMdSend } from "react-icons/io";
+
 const ClubDetail = () => {
   const [clubData, setClubData] = useState({});
   const {savedCred } = useContext(Context);
@@ -37,6 +40,8 @@ const [desc,setdesc]= useState("")
   };
 const {user} = useSelector((state)=>state.auth);
 const [userInfo,setUserInfo]=useState(user);
+const [comment,setComment] = useState("");
+const [commentRender,setCommentRender] = useState(true);
 useEffect(()=>{
   setUserInfo(user)
 },[])
@@ -50,7 +55,7 @@ useEffect(()=>{
 
   useEffect(() => {
     getClub();
-  }, [popup,load]);
+  }, [popup,load,commentRender]);
   const handleSave = async () => {
      
     }
@@ -64,6 +69,24 @@ useEffect(()=>{
       }
     });
   };
+
+  const postComment = async (e) => {
+    // e.preventDefault();
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
+    // const data = {
+    //   userId: userInfo._id,
+    //   eventId: eventInfo._id,
+    //   username: userInfo.username,
+    //   userPhoto: userInfo.image,
+    //   comment: comment,
+    // }
+    // const req = await api.post('/events/comment', data, config);
+    // setCommentRender(!commentRender);
+  }
   
 
   return (
@@ -212,11 +235,22 @@ useEffect(()=>{
           <p className="text-base font-body_font" dangerouslySetInnerHTML={{ __html: clubData?.description?.replace(/\n/g, '<br />') }}></p>
            
         </div>
-        <div className="p-1">
-        <p className="text-lg text-orange font-semibold mb-3">COMMENTS</p>
-  
-</div>
-</div>
+        </div>
+        <div className="my-5 w-full p-5 bg-light-grey rounded-lg">
+        <p className="text-lg text-orange font-semibold mb-3">Comments</p>
+        <input type="text" placeholder="Write a comment" onChange={(e) => {setComment(e.target.value)}} id="comment_box"/>
+        <button id="btn_post" onClick={postComment}><IoMdSend /></button>
+        {/* {
+          eventInfo?.comments?
+          (eventInfo.comments.map((comment,i) => {
+            return(
+              <Comments comment={comment} eventId={eventid} userInfo={userInfo} eventInfo={eventInfo}/>
+            )
+          }))
+          :
+          null
+        } */}
+      </div>
 
     </div>
   );

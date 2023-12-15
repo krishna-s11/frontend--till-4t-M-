@@ -9,16 +9,20 @@ import { useDispatch } from "react-redux";
 import { LoginA, loadUser } from "../../redux/actions/auth"
 import { LOGIN_SUCCESS } from "../../redux/actions/types";
 import BotMessage from "../../components/Floating_Btn/Bot";
+import { useChatContext } from "../../Context/ChatContext";
+
 const Login = () => {
   const location = useLocation();
-    const from = location.state?.from?.pathname || "/home";
+  const from = location.state?.from?.pathname || "/home";
   const [loading, setLoading] = useState(false);
   const [login, setLogin] = useState({ email: "", password: "" });
   const [loginErrors, setLoginErrors] = useState({});
   const [rememberMe, setRememberMe] = useState(false);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
-const dispatch =useDispatch();
+  const dispatch =useDispatch();
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
@@ -52,10 +56,10 @@ const dispatch =useDispatch();
         let ans;
         if(login.email==="test@gmail.com" || login.email==="swinxter@gmail.com" ){
           const {data} = await api.post(`/login4`,login,{withCredentials:true});
-ans=data;
+          ans=data;
         }else{
           const {data} = await api.post(`/login`,login,{withCredentials:true});
-ans =data;
+          ans = data;
         }
 
         if (!ans.data) {

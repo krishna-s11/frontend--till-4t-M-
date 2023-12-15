@@ -4,6 +4,7 @@ import { calculateAge } from "../utils/CalculateAge";
 import CoupleDetailPage from "./CoupleDetailPage";
 import { useSelector } from "react-redux";
 import api from "../utils/api";
+import ChatContextProvider, { useChatContext } from "../Context/ChatContext";
 
 const UserDetailPage = () => {
   const [age, setAge] = useState("");
@@ -82,8 +83,11 @@ const handleCancelRequest = async () => {
 const RenderedStyle={
 "color":`${userInfo?.gender=== 'male'?'#3A97FE':userInfo?.gender=== 'female'?'#FF2A90':'#cf00cf'}`
 }
+  const {startDMChatRoom} = useChatContext();
 
-  return (<>
+  return (
+  <ChatContextProvider>
+  <>
 
 {userInfo?.profile_type==="single"?
  <div className="bg-black-20">
@@ -415,6 +419,7 @@ const RenderedStyle={
 }
    
     </>
+    </ChatContextProvider>
   );
 };
 
