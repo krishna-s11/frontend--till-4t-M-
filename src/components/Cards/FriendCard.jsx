@@ -3,12 +3,14 @@ import "./css/friendsCard.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import api from '../../utils/api';
+import { useChatContext } from '../../Context/ChatContext';
 
 const FriendCard = ({data,request}) => {
   const [users,setUsers] = useState([]);
   const {user} = useSelector((state)=>state.auth);
   const [userInfo,setUserInfo]=useState(user);
   const navigate = useNavigate();
+  const {startDMChatRoom} = useChatContext();
 
   const handleViewProfile = (e) => {
     e.preventDefault();
@@ -24,6 +26,11 @@ const FriendCard = ({data,request}) => {
       console.log(e);
     }
 
+  }
+  
+  const message = async () => {
+    startDMChatRoom(data);
+    navigate("/messaging");
   }
 
   return (
@@ -51,6 +58,7 @@ const FriendCard = ({data,request}) => {
                   :
                   <button
                     className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                    onClick={message}
                   >
                     Message
                   </button>     

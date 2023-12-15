@@ -55,7 +55,7 @@ import Checkout from './pages/Checkout';
 import LegalPage from './pages/LegalPage';
 import Messaging from './pages/Messaging';
 import { StreamChat } from "stream-chat";
-import { useChatContext } from './Context/ChatContext';
+import ChatContextProvider, { useChatContext } from './Context/ChatContext';
 
 function App() {
 const {isAuthenticated} = useSelector((state)=>state.auth);
@@ -112,7 +112,7 @@ if(isAuthenticated){
  
 {/* USER  */}
 <Route path="/user-detail" element={<Layout><ProtectedRoute><UserDetailPage /></ProtectedRoute></Layout>} />
-<Route path="/user-detail/:id" element={<Layout><ProtectedRoute><UserDetailId /></ProtectedRoute></Layout>} />
+<Route path="/user-detail/:id" element={<Layout><ProtectedRoute><ChatContextProvider><UserDetailId /></ChatContextProvider></ProtectedRoute></Layout>} />
 <Route path="/edit-detail" element={<Layout><ProtectedRoute><EditUserDetailsPage /></ProtectedRoute></Layout>} />
 <Route path="editcouple-detail" element={<Layout><ProtectedRoute><CoupleEditDetailPage/></ProtectedRoute></Layout>}/>
 <Route path="/checkout/:title/:price" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
@@ -135,7 +135,7 @@ if(isAuthenticated){
 <Route path="/recentuser" element={<ProtectedRoute>< RecentUser/></ProtectedRoute>} />
 <Route path="/nearusers" element={<ProtectedRoute>< NearUsers/></ProtectedRoute>} />
 <Route path="/onlineusers" element={<ProtectedRoute><OnlineUers/></ProtectedRoute>} />
-<Route path="/my_friends" element={<ProtectedRoute><MyFriends/></ProtectedRoute>} />
+<Route path="/my_friends" element={<ProtectedRoute><ChatContextProvider><MyFriends/></ChatContextProvider></ProtectedRoute>} />
 <Route path="/sent_request" element={<ProtectedRoute><SentRequest/></ProtectedRoute>} />
 <Route path="/recieved_request" element={<ProtectedRoute><RecievedRequests/></ProtectedRoute>} />
 <Route path="/membership" element={<ProtectedRoute><Membership/></ProtectedRoute>} />

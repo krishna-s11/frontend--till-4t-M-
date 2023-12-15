@@ -4,7 +4,7 @@ import { Link, useNavigate,useLocation } from "react-router-dom";
 import { calculateAge } from "../utils/CalculateAge";
 import Loading from "../components/M_used/Loading";
 import { useChatContext } from "../Context/ChatContext";
-
+import { StreamChat } from "stream-chat";
 
 const CoupleDetailPage = ({userInfo,handleRemove,handleSendRequest,handleCancelRequest,sent,loading}) => {
 const location = useLocation();
@@ -12,11 +12,18 @@ const [age, setAge] = useState("");
   const [age2,setage2]=useState("")
 const {user} = useSelector((state)=>state.auth);
 const {startDMChatRoom} = useChatContext();
+const {initChatCalled} = useChatContext();
+const {setChatClient} = useChatContext();
 const navigate = useNavigate();
 // const [userInfo,setUserInfo]=useState(user);
 // useEffect(()=>{
 //   setUserInfo(user)
 // },[])
+  const message = async () => {
+    startDMChatRoom(userInfo);
+    navigate("/messaging");
+  }
+
   const RenderedStyle = {
     color: `${
       userInfo?.couple?.person1?.gender === "male"
@@ -41,6 +48,7 @@ const navigate = useNavigate();
     setAge(calculateAge(userInfo?.couple?.person1.DOB));
       setage2(calculateAge(userInfo?.couple?.person2.DOB));
   })
+
 
   return (
     <div className="bg-black-20">
@@ -150,7 +158,7 @@ const navigate = useNavigate();
                 }
                 <button
                   className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
-                  onClick={() => {navigate("/messaging"); startDMChatRoom(userInfo._id); }}
+                  onClick={() => {message()}}
                 >
                   Message
                 </button> 
