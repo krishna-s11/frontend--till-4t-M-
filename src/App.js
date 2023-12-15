@@ -127,7 +127,7 @@ if(isAuthenticated){
 <Route path="/event-page" element={<ProtectedRoute><EventPage /></ProtectedRoute>} />
 <Route path="/create_event" element={<ProtectedRoute><CreateEventPage /></ProtectedRoute>} />
 <Route path="/event_edit/:id" element={<ProtectedRoute><EditEventPage /></ProtectedRoute>} />
-<Route path='/event-detail/:id' element={<ProtectedRoute><EventDetailPage/></ProtectedRoute>} />
+<Route path='/event-detail/:id' element={<ProtectedRoute><ChatContextProvider><EventDetailPage/></ChatContextProvider></ProtectedRoute>} />
 <Route path="/event-detail-media" element={<ProtectedRoute><EventDetailMedia /></ProtectedRoute>} />
 <Route path="/my-event" element={<ProtectedRoute><Myevents/></ProtectedRoute>} />
 <Route path="/event-participants" element={<ProtectedRoute><EventParticipants /></ProtectedRoute>} />

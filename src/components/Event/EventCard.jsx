@@ -76,7 +76,7 @@ const EventCard = ({ event,loc }) => {
          onClick={() => handleEvent(event._id)}
       />
       <div className="bg-light-grey p-4 rounded-b-2xl grid gap-1">
-      <h3 className="text-2xl font-semibold">{event?.eventName}</h3>
+      <h3 className="text-2xl font-semibold" style={{whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", width: "200px"}}>{event?.eventName}</h3>
         <div className="grid gap-1">
         <p className="text-sm">
         {event?.type === 'Public Event' ? (

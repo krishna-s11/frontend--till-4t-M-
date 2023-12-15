@@ -18,6 +18,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import "./css/eventDetailPage.css"
 import { IoMdSend } from "react-icons/io";
 import Comments from "./Comments";
+import { useChatContext } from "../../Context/ChatContext";
 
 
 
@@ -37,6 +38,7 @@ const EventDetailPage = () => {
   const eventid = data.id;
   const [comment,setComment] = useState("");
   const [commentRender,setCommentRender] = useState(true);
+  const {startDMChatRoom} = useChatContext();
 
   useEffect(()=>{
 setUserInfo(user)
@@ -220,6 +222,11 @@ setUserInfo(user)
     setCommentRender(!commentRender);
   }
 
+  const message = async () => {
+    startDMChatRoom(eventInfo.userId._id);
+    navigate("/messaging");
+  }
+
   return (
     <div className="bg-black pt-0 sm:pt-8 py-8 px-6 rounded-2xl xl:rounded-r-none min-h-full">
       
@@ -237,9 +244,11 @@ setUserInfo(user)
         <span className="primary_btn cursor-pointer !text-sm !py-2" onClick={() => navigate('/event-participants')}>
           Guest list
         </span>
-        <span className="primary_btn cursor-pointer !text-sm !py-2">
+        {
+          eventInfo.userId?._id !== userInfo._id?
+        <span className="primary_btn cursor-pointer !text-sm !py-2" onClick={message}>
           Message
-        </span>
+        </span>:null}
       </div>
     </div>
     <div className="flex flex-wrap items-stretch max-w-7xl">
