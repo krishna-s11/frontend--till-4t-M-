@@ -5,11 +5,13 @@ import DbHeader from "../Header/DbHeader";
 import Sidebar from "./Sidebar";
 import ModelSidebarList from "./ModelSidebarList";
 import Footer from "../../Footer";
+import { useChatContext } from "../../../../Context/ChatContext";
 
 const Main_Layout = () => {
   const [layout, setLayout] = useState("layout-1");
   const location = useLocation();
   const { pathname } = location;
+  const {unread} = useChatContext();
   useEffect(() => {
     if (
       pathname === "/create_club" ||
@@ -42,7 +44,7 @@ const Main_Layout = () => {
         <div className="dashboard_body flex flex-wrap items-stretch min-h-screen mt-5">
           <div className="sidebar_wrapper w-1/5 hidden xl:block">
             <div className="bg-dark-black rounded-r-2xl p-6 py-8 w-full flex justify-end sticky top-0 h-full">
-              <Sidebar />
+              <Sidebar unread={unread}/>
             </div>
           </div>
           <div

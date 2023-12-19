@@ -11,7 +11,7 @@ const NearUsers = () => {
     const getRecentUsers = async () => {
         let userArr = [];
         const { data } = await api.get(`/recentusers`);
-        data.map(d => {
+        data.users.map(d => {
             if(d._id !== userInfo._id){
                 userArr.push(d);
             }

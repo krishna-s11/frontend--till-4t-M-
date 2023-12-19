@@ -504,7 +504,7 @@ setUserInfo(user)
 
 
       </div>
-      <div className="my-5 w-full p-5 bg-light-grey rounded-lg">
+      {/* <div className="my-5 w-full p-5 bg-light-grey rounded-lg">
         <p className="text-lg text-orange font-semibold mb-3">Comments</p>
         <input type="text" placeholder="Write a comment" onChange={(e) => {setComment(e.target.value)}} id="comment_box"/>
         <button id="btn_post" onClick={postComment}><IoMdSend /></button>
@@ -518,7 +518,7 @@ setUserInfo(user)
           :
           null
         }
-      </div>
+      </div> */}
       {/* Photos and Videos */}
 
       {toggleRequest ? (

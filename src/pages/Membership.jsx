@@ -22,7 +22,7 @@ const Membership = () => {
           <PlansCard title="1 Month" price="$24.99"/>
           <PlansCard title="3 Months" price="$46.99"/>
           <PlansCard title="6 Months" price="$77.99" />
-          <PlansCard title="12 Months" price="$119.99"/>
+          <PlansCard title="9 Months" price="$119.99"/>
         </div>
       </div>
     </div>

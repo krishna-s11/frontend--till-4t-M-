@@ -46,6 +46,7 @@ const CheckoutCard = ({title,price}) => {
             <p>{price}</p>
           </div>
         </div>
+        <p style={{marginTop: "10px", color: "#fff", marginLeft: "10px"}}>* You will be billed by Swinxter</p>
       </div>
       <div className='checkout_card'>
         <h3>Membership Payment</h3>

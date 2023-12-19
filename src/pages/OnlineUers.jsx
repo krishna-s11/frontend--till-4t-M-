@@ -12,7 +12,7 @@ const OnlineUers = () => {
 
     const getVisitedUsers = async () => {
         const {data} = await api.post(`/visited-users`,{visitedUserIds: userInfo.visited},{withCredentials:true});
-        setUsers(data);
+        setUsers(data.users);
     }
 
     useEffect(() => {

@@ -118,7 +118,7 @@ if(isAuthenticated){
 <Route path="/checkout/:title/:price" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
 
 
-<Route  element={<Main_Layout/>}>
+<Route  element={<ChatContextProvider><Main_Layout/></ChatContextProvider>}>
 
 {/* HOME */}
 <Route path='/home' element={<ProtectedRoute><Main_Home/></ProtectedRoute>} />

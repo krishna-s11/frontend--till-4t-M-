@@ -21,7 +21,8 @@ const MenuItem = ({
   path,
   activeMenuItem,
   setActiveMenuItem,
-  externalPath
+  externalPath,
+  unread
 }) => {
   const [showSubmenu, setShowSubmenu] = useState(false);
   const location = useLocation();
@@ -59,7 +60,7 @@ const MenuItem = ({
 
 
   return (
-    <li className="menu-item">
+    <li className="menu-item" style={{position: "relative"}}>
       <span
         className={`title_submenu ${activeMenuItem === title ? "active" : ""}`}
         onClick={toggleSubmenu}
@@ -89,10 +90,15 @@ const MenuItem = ({
           </ul>
         </div>
       )}
+      {
+        title==="Messages" && unread>0?
+        <p style={{position: "absolute", top: "50%", right: "20px", transform: "translateY(-50%)", backgroundColor: "red", padding:"2px 8px", borderRadius: "5px"}}>{`${unread}`}</p>
+        :null
+      }
     </li>
   );
 };
-const Sidebar = () => {
+const Sidebar = ({unread}) => {
   const [activeMenuItem, setActiveMenuItem] = useState(null);
   // const userInfo;  // USERINFO REDUCER
   const {user} = useSelector((state)=>state.auth);
@@ -100,6 +106,7 @@ const Sidebar = () => {
   useEffect(()=>{
     setUserInfo(user)
   },[])
+  console.log(unread);
   const menuItems = [
     {
       title: "Home",
@@ -284,6 +291,7 @@ navigate("/login")}).catch((err)=>console.log(err))
                 path={menuItem.path}
                 submenus={menuItem.submenus}
                 externalPath={menuItem.externalPath?menuItem.externalPath:null}
+                unread={unread}
               />
             ))}
             <li>

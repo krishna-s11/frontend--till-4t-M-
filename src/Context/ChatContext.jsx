@@ -14,8 +14,7 @@ const ChatContextProvider = ({children}) => {
     ((state)=>state.auth);
     const [chatClient, setChatClient] = useState();
     const initChatCalled = useRef(false); // Ref to track if initChat has been called
-    const location = useLocation();
-    const navigate = useNavigate();
+    const [unread,setUnread] = useState();
 
     const initChat = async() => {
         if(!user || initChatCalled.current){
@@ -30,6 +29,8 @@ const ChatContextProvider = ({children}) => {
             image: user.image
         },user.stream_token);
 
+        setUnread(client.user.total_unread_count);
+
         setChatClient(client);
 
         return () => {
@@ -42,6 +43,14 @@ const ChatContextProvider = ({children}) => {
         initChat();
     },[user])
 
+    useEffect(() => {
+        chatClient?.on('notification.message_new', event => {
+            setUnread(event.total_unread_count);
+        });
+        chatClient?.on('notification.mark_read', event => {
+        setUnread(event.total_unread_count);
+        });
+    },[chatClient])
 
     const startDMChatRoom = async (chatUser) => {
         const newChannel = chatClient.channel("messaging", {
@@ -50,7 +59,8 @@ const ChatContextProvider = ({children}) => {
         await newChannel.watch();
     }
 
-    const value = {startDMChatRoom,setChatClient}
+    const value = {startDMChatRoom,setChatClient,unread}
+
 
     if(!chatClient){
         return(

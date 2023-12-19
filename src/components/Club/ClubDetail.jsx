@@ -13,8 +13,9 @@ import { toast } from "react-toastify";
 import { Context } from "../../Context/context";
 import api from "../../utils/api";
 import { FaArrowLeft } from "react-icons/fa6";
-import Comments from "../Event/Comments";
+import Comments from "../Comments/Comments";
 import { IoMdSend } from "react-icons/io";
+import { FaStar } from "react-icons/fa";
 
 const ClubDetail = () => {
   const [clubData, setClubData] = useState({});
@@ -23,7 +24,7 @@ const ClubDetail = () => {
   const [toggleRequest, setToggleRequest] = useState(false);
 const [popup,setPopup]=useState(false)
 const [load,setLoad]=useState(false)
-const [rating, setRating] = useState(0)
+const [rating, setRating] = useState(null)
 const[edit,setEdit]=useState(false)
 const [desc,setdesc]= useState("")
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const {user} = useSelector((state)=>state.auth);
 const [userInfo,setUserInfo]=useState(user);
 const [comment,setComment] = useState("");
 const [commentRender,setCommentRender] = useState(true);
+
 useEffect(()=>{
   setUserInfo(user)
 },[])
@@ -88,6 +90,7 @@ useEffect(()=>{
     // setCommentRender(!commentRender);
   }
   
+  console.log(clubData);
 
   return (
     <div className="bg-black pt-0 sm:pt-8 py-8 px-6 rounded-2xl xl:rounded-r-none min-h-full">
@@ -236,22 +239,7 @@ useEffect(()=>{
            
         </div>
         </div>
-        <div className="my-5 w-full p-5 bg-light-grey rounded-lg">
-        <p className="text-lg text-orange font-semibold mb-3">Comments</p>
-        <input type="text" placeholder="Write a comment" onChange={(e) => {setComment(e.target.value)}} id="comment_box"/>
-        <button id="btn_post" onClick={postComment}><IoMdSend /></button>
-        {/* {
-          eventInfo?.comments?
-          (eventInfo.comments.map((comment,i) => {
-            return(
-              <Comments comment={comment} eventId={eventid} userInfo={userInfo} eventInfo={eventInfo}/>
-            )
-          }))
-          :
-          null
-        } */}
-      </div>
-
+        <Comments productId={clubData._id} userInfo={userInfo} product={clubData}/>
     </div>
   );
 };
