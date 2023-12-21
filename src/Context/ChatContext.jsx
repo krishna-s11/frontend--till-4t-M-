@@ -43,15 +43,6 @@ const ChatContextProvider = ({children}) => {
         initChat();
     },[user])
 
-    useEffect(() => {
-        chatClient?.on('notification.message_new', event => {
-            setUnread(event.total_unread_count);
-        });
-        chatClient?.on('notification.mark_read', event => {
-        setUnread(event.total_unread_count);
-        });
-    },[chatClient])
-
     const startDMChatRoom = async (chatUser) => {
         const newChannel = chatClient.channel("messaging", {
             members: [user._id, chatUser._id]

@@ -31,9 +31,7 @@ const Footer = () => {
                   Compliance Statement</Link>
                 </p>
                 <p className="text-sm font-body_font">
-                  This website is operated in the US by Swinxter, Inc. #1254
-                  2500 W International Speedway Blvd Suite 900 Daytona Beach, FL
-                  32114 United States
+                  This website is operated in the US by Swinxter, Inc. 119 S Palmetto Ave Daytona Beach, Florida 32114 United States
                 </p>
                 <p className="text-sm font-body_font">
                   Copyright © 2023 Swinxter, Inc. All rights reserved. Important
@@ -53,13 +51,13 @@ const Footer = () => {
                   <Link>SWINXTER Inc</Link>
                 </li>
                 <li className="my-1">
-                  <Link>Privacy Policy / Cookies</Link>
+                  <Link to="/legal/privacy">Privacy Policy</Link>
                 </li>
                 <li className="my-1">
-                  <Link>Terms of Use</Link>
+                  <Link to="/legal/terms">Terms of Use</Link>
                 </li>
                 <li className="my-1">
-                  <Link>Do Not Sell My Personal Information</Link>
+                  <Link to="/legal/refund">Refund Policy</Link>
                 </li>
                 <li className="my-1">
                   <Link

@@ -184,7 +184,7 @@ const Sidebar = ({unread}) => {
     {
       title: "Shop",
       submenus: [],
-      externalPath: "http://swinxterrooms.com/"
+      // externalPath: "http://swinxterrooms.com/"
     },
     {
       title: "Situationship",

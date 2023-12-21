@@ -16,6 +16,12 @@ const UserDetailPage = () => {
   const navigate = useNavigate();
   const [sent,setSent] = useState(0);
   const [loading,setLoading] = useState(0);
+  const {startDMChatRoom} = useChatContext();
+  
+  const message = async () => {
+    startDMChatRoom(userInfo);
+    navigate("/messaging");
+  }
 
   const getUser = async () =>{
     const id = location.search.split("=")[1]
@@ -83,7 +89,6 @@ const handleCancelRequest = async () => {
 const RenderedStyle={
 "color":`${userInfo?.gender=== 'male'?'#3A97FE':userInfo?.gender=== 'female'?'#FF2A90':'#cf00cf'}`
 }
-  const {startDMChatRoom} = useChatContext();
 
   return (
   <ChatContextProvider>
@@ -138,40 +143,37 @@ const RenderedStyle={
          {
           location.search.length > 0 ? 
          <div className="grid justify-stretch gap-2 mt-3 event_card_button_wrap items-start" style={{width: "300px"}}>
-                {/* {
-                  user.friends.includes(userInfo?._id)? <button
-                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
-                  onClick={handleRemove}
-                >
-                  Remove Friend
-                </button>:
-                (sent === 1?
+                {
+                  user.friends.includes(userInfo?._id)?
+                  <button className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]" onClick={handleRemove}>
+                    Remove Friend
+                  </button>
+                  :
+                  user.sent_requests.includes(userInfo?._id) || sent ? 
+                  <button
+                      className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                      onClick={handleCancelRequest}
+                    >
+                      {
+                      loading?<Loading />:"Cancel Request"
+                      }
+                  </button>
+                  :
+                  <button
+                    className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                    onClick={handleSendRequest}
+                  >
+                    {
+                      loading?<Loading />:"Send Friend Request"
+                    }
+                  </button>
+                }
                 <button
                   className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
-                  onClick={handleCancelRequest}
-                >
-                  Cancel Friend Request
-                </button>:
-                (user.sent_requests.includes(userInfo?._id)?
-                <button
-                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
-                  onClick={handleCancelRequest}
-                >
-                  Cancel Friend Request
-                </button>:<button
-                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
-                  onClick={handleSendRequest}
-                >
-                  Send Friend Request
-                </button>))
-                } */}
-                <Link to="https://social-messenger-iota.vercel.app/" target="_blank">
-                <button
-                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                  onClick={() => {message()}}
                 >
                   Message
-                </button>
-                </Link>     
+                </button>   
           </div>:null}
        </div>
      </div>

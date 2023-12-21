@@ -83,7 +83,7 @@ useEffect(() => {
   }, []);
 
   useEffect(()=>{
-if(isAuthenticated){
+if(isAuthenticated && !pathname.includes("legal")){
   console.log("first");
   navigate(from, { replace: true })
 }
@@ -118,7 +118,7 @@ if(isAuthenticated){
 <Route path="/checkout/:title/:price" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
 
 
-<Route  element={<ChatContextProvider><Main_Layout/></ChatContextProvider>}>
+<Route  element={<Main_Layout/>}>
 
 {/* HOME */}
 <Route path='/home' element={<ProtectedRoute><Main_Home/></ProtectedRoute>} />

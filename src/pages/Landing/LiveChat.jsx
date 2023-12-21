@@ -46,12 +46,6 @@ const LiveChatPage = () => {
               on this thrilling opportunity to connect with like-minded
               individuals and create unforgettable moments in real-time. Join us
               now and start chatting live with the sexiest people in the world!
-              324,200* active members worldwide | 124,367 new photos this week |
-              14,478* members online now!
-              <strong className="block">
-                120,202,200* active members worldwide | 118,691 new photos this
-                week | 34,514* members online now!
-              </strong>
             </p>
           </div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5 mt-10">

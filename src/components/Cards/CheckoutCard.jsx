@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import "./css/checkoutCard.css";
 import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 
 const CheckoutCard = ({title,price}) => {
   const {user} = useSelector
@@ -78,7 +79,7 @@ const CheckoutCard = ({title,price}) => {
         </div>
         <div style={{display: "flex", alignItems: "center"}}>
           <input type="checkbox" id="tnc" name="tnc" value="tnc"  style={{width: "20px", padding: "0", margin: "0 10px"}}/>
-          <label for="tnc" style={{color: "orange", width: "100%"}}>I agree to Terms & Conditions and Privacy Policy</label>
+          <label for="tnc" style={{color: "orange", width: "100%"}}>I agree to <Link style={{cursor: "pointer"}} to="/legal/terms" target='_blank'>Terms & Conditions</Link> and <Link to="/legal/privacy" target="_blank">Privacy Policy</Link></label>
         </div>
         <button>Proceed</button>
         <p style={{textAlign: "center", marginTop: "30px", color: "#777"}}>For questions regarding payments, please contact support.</p>
