@@ -5,6 +5,7 @@ import CoupleDetailPage from "./CoupleDetailPage";
 import { useSelector } from "react-redux";
 import api from "../utils/api";
 import ChatContextProvider, { useChatContext } from "../Context/ChatContext";
+import Loading from "../components/M_used/Loading";
 
 const UserDetailPage = () => {
   const [age, setAge] = useState("");
