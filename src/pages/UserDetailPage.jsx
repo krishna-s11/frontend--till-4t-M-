@@ -19,11 +19,6 @@ const UserDetailPage = () => {
   const [loading,setLoading] = useState(0);
   const {startDMChatRoom} = useChatContext();
   
-  const message = async () => {
-    startDMChatRoom(userInfo);
-    navigate("/messaging");
-  }
-
   const getUser = async () =>{
     const id = location.search.split("=")[1]
     const { data } = await api.get(`/user_details/${id}`);
@@ -56,11 +51,18 @@ useEffect(() => {
     }
 }, []);
 
+const message = async () => {
+  startDMChatRoom(userInfo);
+  navigate("/messaging");
+}
+
+
 const handleRemove = async () => {
   try{
+    setLoading(1);
     await api.put(`/remove_friend/${user?._id}/${userInfo?._id}`)
-    // window.location.reload();
-    // navigate("/my_friends");
+    setLoading(0);
+    setSent(0);
   }catch(e){
     console.log(e);
   }

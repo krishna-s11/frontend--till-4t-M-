@@ -18,6 +18,7 @@ const SinglePerson = () => {
     Year: "",
   });
   const [isGenderSelected, setIsGenderSelected] = useState(false);
+  const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
 
   const [bodyhair, SetBodyHair] = useState([]);
   const [interest, setInterest] = useState({
@@ -294,6 +295,7 @@ const SinglePerson = () => {
       config
     );
     if (data) {
+      setIsPhotoUploaded(true);
       toast.success("Image Uploaded");
     } else {
       toast.error("failed to Upload Image");
@@ -379,7 +381,7 @@ const SinglePerson = () => {
         config
       );
 
-      if (isGenderSelected) {
+      if (isGenderSelected && isPhotoUploaded) {
       if (data) {
         navigate("/verify_email",{state:state?.email});
       } else {

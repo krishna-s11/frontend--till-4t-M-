@@ -111,7 +111,7 @@ if(isAuthenticated && !pathname.includes("legal")){
    <Route path="/forgot" element={<Layout><ForgotPassword/></Layout>} />
  
 {/* USER  */}
-<Route path="/user-detail" element={<Layout><ProtectedRoute><UserDetailPage /></ProtectedRoute></Layout>} />
+<Route path="/user-detail" element={<Layout><ProtectedRoute><ChatContextProvider><UserDetailPage /></ChatContextProvider></ProtectedRoute></Layout>} />
 <Route path="/user-detail/:id" element={<Layout><ProtectedRoute><ChatContextProvider><UserDetailId /></ChatContextProvider></ProtectedRoute></Layout>} />
 <Route path="/edit-detail" element={<Layout><ProtectedRoute><EditUserDetailsPage /></ProtectedRoute></Layout>} />
 <Route path="editcouple-detail" element={<Layout><ProtectedRoute><CoupleEditDetailPage/></ProtectedRoute></Layout>}/>

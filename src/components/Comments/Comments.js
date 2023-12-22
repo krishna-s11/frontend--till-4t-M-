@@ -4,15 +4,13 @@ import {FaStar} from "react-icons/fa";
 import { IoMdSend } from 'react-icons/io';
 import { IoMdClose } from "react-icons/io";
 import api from '../../utils/api';
-import Replies from './Replies';
+import { MdDelete } from "react-icons/md";
 
-const Comments = ({productId, userInfo, product}) => {
+
+const Comments = ({productId, userInfo, product, setCommentRender}) => {
     const [rating,setRating] = useState(null);
     const [comment,setComment] = useState();
     const [starHover,setStarHover] = useState();
-    const [commentRender,setCommentRender] = useState(true);
-
-    console.log(rating, comment);
 
     const postComment = async() => {
         const data = {
@@ -29,20 +27,24 @@ const Comments = ({productId, userInfo, product}) => {
             },
           };
         await api.post(`/clubs/comment`,data, config);
-        setCommentRender(!commentRender)
+        setCommentRender();
     } 
 
-    useEffect(() => {
-        
-    },[commentRender])
-
-    console.log(product.comments)
-
+    const deleteComment = async(id) => {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      await api.put(`/clubs/comment/del`,{id, productId}, config);
+      setCommentRender();
+    }
+   
 
   return (
     <div className="my-5 w-full p-5 bg-light-grey rounded-lg">
           <p className="text-lg text-orange font-semibold mb-3">Comments</p>
-          <div className="rating_container">
+          {/* <div className="rating_container">
               {
                 [...Array(5)].map((star,index) => {
                   const currentRating = index + 1;
@@ -67,10 +69,10 @@ const Comments = ({productId, userInfo, product}) => {
               }
           </div>
           <input type="text" placeholder="Write a comment" onChange={(e) => {setComment(e.target.value)}} id="comment_box"/>
-          <button id="btn_post" onClick={postComment}><IoMdSend /></button>
+          <button id="btn_post" onClick={postComment}><IoMdSend /></button> */}
           <div className='comments_container'>
           {
-            product.comments && product.comments.map((comment,i) => {
+            product.comments && product.comments.sort((a,b) => (new Date(a.timestamp) < new Date(b.timestamp) ? 1: -1)).map((comment,i) => {
                 return(
                     <div className="main_comment">
                         <div className="comment_head">
@@ -93,9 +95,13 @@ const Comments = ({productId, userInfo, product}) => {
                                     }
                                 </div>
                                 <p className="comment_username">{comment.username}</p>
-                                <div>
+                                <div style={{position: "relative"}}>
                                     <p className="comment_text">{comment.comment}</p>
-                                    {/* <Replies /> */}
+                                    { 
+                                      comment.username === userInfo.username?
+                                      <MdDelete style={{position: "absolute", top: "50%",right: "0", transform: "translate(100%,-50%)", fontSize: "20px", color: "red", cursor: "pointer"}} onClick={() => {deleteComment(comment._id)}}/>
+                                      :null
+                                    }
                                 </div>
                             </div>
                         </div>

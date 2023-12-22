@@ -50,7 +50,11 @@ const ChatContextProvider = ({children}) => {
         await newChannel.watch();
     }
 
-    const value = {startDMChatRoom,setChatClient,unread}
+    const deleteChat = async (event) => {
+        await event.destroy();
+    }
+
+    const value = {startDMChatRoom,setChatClient,unread, deleteChat}
 
 
     if(!chatClient){

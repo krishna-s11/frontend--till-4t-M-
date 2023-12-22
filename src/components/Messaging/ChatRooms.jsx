@@ -5,11 +5,15 @@ import { ChannelList } from 'stream-chat-react'
 import FriendsList from './FriendsList'
 import { MdAddComment } from "react-icons/md";
 import { IoArrowBackSharp } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const ChatRooms = () => {
   const options = { state: true, presence: true};
   const sort = { last_message_at: -1 };
   const [friends,setFriends] = useState(0);
+  const {deleteChat} = useChatContext();
+  const {user} = useSelector
+  ((state)=>state.auth);
 
   return (
     <div className='chatroom'>
@@ -25,7 +29,7 @@ const ChatRooms = () => {
       {
         friends?<FriendsList back={() => {setFriends(0)}}/>
         :
-        <ChannelList  />
+        <ChannelList filters={{members: { $in: [user._id] }}} />
       }
     </div>
   )

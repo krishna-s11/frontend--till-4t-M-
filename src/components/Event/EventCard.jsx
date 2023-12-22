@@ -221,7 +221,7 @@ const EventCard = ({ event,loc }) => {
                   className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
                   onClick={() => handleJoinEvent(event._id)}
                 >
-                  Send Join Request
+                  Join Request
                 </button>
               )
             ) : (

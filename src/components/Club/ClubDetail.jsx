@@ -16,6 +16,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import Comments from "../Comments/Comments";
 import { IoMdSend } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
+import WriteReview from "../../pages/WriteReview";
 
 const ClubDetail = () => {
   const [clubData, setClubData] = useState({});
@@ -43,6 +44,7 @@ const {user} = useSelector((state)=>state.auth);
 const [userInfo,setUserInfo]=useState(user);
 const [comment,setComment] = useState("");
 const [commentRender,setCommentRender] = useState(true);
+const [writeReview, setWriteReview] = useState(0);
 
 useEffect(()=>{
   setUserInfo(user)
@@ -94,7 +96,9 @@ useEffect(()=>{
 
   return (
     <div className="bg-black pt-0 sm:pt-8 py-8 px-6 rounded-2xl xl:rounded-r-none min-h-full">
-     
+      {
+        writeReview?<WriteReview  productId={clubData._id} userInfo={userInfo} setCommentRender={() => {setCommentRender(!commentRender)}} close={() => {setWriteReview(0)}}/>:null
+      }
       <span className="primary_btn cursor-pointer !text-sm !py-2 !px-3 !leading-none !py-3" onClick={()=>navigate(-1)}>
         <span className="text-sm inline-flex items-center mr-2"><FaArrowLeft /></span>Back
       </span>
@@ -104,7 +108,7 @@ useEffect(()=>{
         </h3>
         <div className="flex flex-wrap gap-4 justify-end">
 
-          <span onClick={handleSave} className="primary_btn cursor-pointer !text-sm !py-2">
+          <span onClick={() => {setWriteReview(1)}} className="primary_btn cursor-pointer !text-sm !py-2">
             Write a review
           </span>
           <span className="primary_btn cursor-pointer !text-sm !py-2">
@@ -239,7 +243,7 @@ useEffect(()=>{
            
         </div>
         </div>
-        <Comments productId={clubData._id} userInfo={userInfo} product={clubData}/>
+        <Comments productId={clubData._id} userInfo={userInfo} product={clubData} setCommentRender={() => {setCommentRender(!commentRender)}}/>
     </div>
   );
 };
