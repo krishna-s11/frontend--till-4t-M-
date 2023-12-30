@@ -56,6 +56,17 @@ const ChatRoomScreen = () => {
     );
     zp = ZegoUIKitPrebuilt.create(KitToken);
     zp.addPlugins({ ZIM });
+    zp.setCallInvitationConfig({
+      // The callback for the call invitation is accepted before joining the room (a room is used for making a call), which can be used to set up the room config. The Call Kit enables you to join the room automatically, and the room config adapts according to the specific call type (ZegoInvitationType).
+      onSetRoomConfigBeforeJoining: (callType) => {
+        return {
+         // ...,
+         showScreenSharingButton: false,
+         showMyCameraToggleButton: false
+         // ...
+        }
+      },
+    })
   }
 
   useEffect(() => {
