@@ -389,7 +389,8 @@ const SinglePerson = () => {
       }
     }
     else{
-      toast.error("Gender field is required")
+      isPhotoUploaded?
+      toast.error("Gender field is required"):toast("Image is required")
     }
     } catch (error) {
       console.log(error);

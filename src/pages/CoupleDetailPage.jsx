@@ -5,8 +5,9 @@ import { calculateAge } from "../utils/CalculateAge";
 import Loading from "../components/M_used/Loading";
 import { useChatContext } from "../Context/ChatContext";
 import { StreamChat } from "stream-chat";
+import api from "../utils/api";
 
-const CoupleDetailPage = ({userInfo,handleRemove,handleSendRequest,handleCancelRequest,sent,loading}) => {
+const CoupleDetailPage = ({userInfo,handleRemove,handleSendRequest,handleCancelRequest,sent,loading, blockUser, blocked}) => {
 const location = useLocation();
 const [age, setAge] = useState("");
   const [age2,setage2]=useState("")
@@ -111,7 +112,7 @@ const navigate = useNavigate();
                  
                 </div>
               </div>
-              <div className="grid justify-stretch gap-2 mt-3 event_card_button_wrap items-start" style={{width: "300px"}}>
+              <div className="grid justify-stretch gap-2 mt-3 event_card_button_wrap items-start" style={{width: "480px"}}>
               {/* {
                   user.friends.includes(userInfo?._id)? <button
                   className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
@@ -156,12 +157,31 @@ const navigate = useNavigate();
                     }
                   </button>
                 }
+                <div style={{display: "flex", width: "300px"}}>
                 <button
                   className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
                   onClick={() => {message()}}
+                  style={{marginRight: "10px"}}
                 >
                   Message
                 </button> 
+                {
+                  blocked || user.blocked_users.includes(userInfo?._id)?
+                    <button
+                      className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                      onClick={() => {blockUser()}}
+                    >
+                      Unblock
+                    </button>
+                    : 
+                    <button
+                      className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                      onClick={() => {blockUser()}}
+                    >
+                      Block
+                    </button>
+                  } 
+                </div> 
               </div>
               {/* <p className="text-lg font-body_font">{userInfo?.slogan}</p>
               <p className="text-lg font-body_font">{userInfo?.introduction}</p> */}

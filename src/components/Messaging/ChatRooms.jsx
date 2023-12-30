@@ -8,7 +8,7 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
 
 const ChatRooms = () => {
-  const options = { state: true, presence: true};
+  const options = { state: true, presence: true, watcher: true};
   const sort = { last_message_at: -1 };
   const [friends,setFriends] = useState(0);
   const {deleteChat} = useChatContext();
@@ -29,7 +29,7 @@ const ChatRooms = () => {
       {
         friends?<FriendsList back={() => {setFriends(0)}}/>
         :
-        <ChannelList filters={{members: { $in: [user._id] }}} />
+        <ChannelList filters={{members: { $in: [user._id] }}} showChannelSearch={true} options={options} />
       }
     </div>
   )

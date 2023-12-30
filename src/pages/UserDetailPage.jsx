@@ -18,6 +18,7 @@ const UserDetailPage = () => {
   const [sent,setSent] = useState(0);
   const [loading,setLoading] = useState(0);
   const {startDMChatRoom} = useChatContext();
+  const [blocked,setBlocked] = useState(0);
   
   const getUser = async () =>{
     const id = location.search.split("=")[1]
@@ -84,6 +85,21 @@ const handleCancelRequest = async () => {
     await api.put(`/cancel_request/${user?._id}/${userInfo?._id}`);
     setLoading(0);
     setSent(0);
+  }catch(e){
+    console.log(e);
+  }
+}
+
+const blockUser = async () => {
+  try{
+    setLoading(1);
+    await api.post("/blockuser",{
+      userId: user._id,
+      blockId: userInfo._id
+    });
+
+    setLoading(0);
+    setBlocked(1);
   }catch(e){
     console.log(e);
   }
@@ -177,6 +193,22 @@ const RenderedStyle={
                 >
                   Message
                 </button>   
+                {
+                  blocked || user.blocked_users.includes(userInfo._id)?
+                    <button
+                      className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                      onClick={() => {blockUser()}}
+                    >
+                      Unblock
+                    </button>
+                    : 
+                    <button
+                      className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                      onClick={() => {blockUser()}}
+                    >
+                      Block
+                    </button>
+                  } 
           </div>:null}
        </div>
      </div>
@@ -420,7 +452,7 @@ const RenderedStyle={
    </div>
  </div>
 </div>:
-<CoupleDetailPage age={age} age2={age2} userInfo={userInfo} handleRemove={handleRemove} handleSendRequest={handleSendRequest} handleCancelRequest={handleCancelRequest} sent={sent} loading={loading}/>
+<CoupleDetailPage age={age} age2={age2} userInfo={userInfo} handleRemove={handleRemove} handleSendRequest={handleSendRequest} handleCancelRequest={handleCancelRequest} sent={sent} loading={loading} blockUser={blockUser} blocked={blocked}/>
 }
    
     </>

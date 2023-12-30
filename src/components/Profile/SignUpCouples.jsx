@@ -476,7 +476,7 @@ if(form2['gender_2']){
         formData,
         config
       );
-      if (isGenderSelected && isGenderSelected_2) {
+      if (isGenderSelected && isGenderSelected_2 && isGenderSelected) {
       if (data) {
         navigate("/verify_email",{state:state?.email});
         setForm({
@@ -547,7 +547,8 @@ if(form2['gender_2']){
       }
     }
     else{
-      toast("Gender field is required")
+      isGenderSelected?
+      toast("Gender field is required"):toast("Image is required")
     }
     } catch (error) {
       console.log(error);

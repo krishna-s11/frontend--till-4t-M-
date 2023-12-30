@@ -92,73 +92,71 @@ if(isAuthenticated && !pathname.includes("legal")){
 
   return (
     <>
-    <Routes>
-  
-    <Route path="*" element={<NotFound/>} />
-    <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
-   <Route path="/about" element={<Layout><AboutPage /></Layout>} />
-   <Route path="/live-chat" element={<Layout><LiveChatPage /></Layout>} />
-   <Route path="/faq" element={<Layout><FaqPage /></Layout>} />
+      <Routes>
+        <Route path="*" element={<NotFound/>} />
+        <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
+        <Route path="/about" element={<Layout><AboutPage /></Layout>} />
+        <Route path="/live-chat" element={<Layout><LiveChatPage /></Layout>} />
+        <Route path="/faq" element={<Layout><FaqPage /></Layout>} />
+        <Route path='/' element={<Layout><Home/></Layout>} />
+        <Route path="signup" element={<Layout><Signup /> </Layout>} />
+        <Route path="login" element={<Layout><Login/></Layout>} />
+        <Route path="forgot" element={<Layout><ForgotPassword /></Layout>} />
+        <Route path="/single/:userId" element={<SinglePerson/>} />
+        <Route path="/couple/:userId" element={<SignUpCouple/>} />
+        <Route path="/verify_email" element={<Layout><VerifyEmail/></Layout>} />
+        <Route path="/verified/:id" element={<Layout><EmailVerified/></Layout>} />
+        <Route path="/forgot" element={<Layout><ForgotPassword/></Layout>} />
     
-    <Route path='/' element={<Layout><Home/></Layout>} />
-    <Route path="signup" element={<Layout><Signup /> </Layout>} />
-    <Route path="login" element={<Layout><Login/></Layout>} />
-   <Route path="forgot" element={<Layout><ForgotPassword /></Layout>} />
-   <Route path="/single/:userId" element={<SinglePerson/>} />
-   <Route path="/couple/:userId" element={<SignUpCouple/>} />
-   <Route path="/verify_email" element={<Layout><VerifyEmail/></Layout>} />
-   <Route path="/verified/:id" element={<Layout><EmailVerified/></Layout>} />
-   <Route path="/forgot" element={<Layout><ForgotPassword/></Layout>} />
- 
-{/* USER  */}
-<Route path="/user-detail" element={<Layout><ProtectedRoute><ChatContextProvider><UserDetailPage /></ChatContextProvider></ProtectedRoute></Layout>} />
-<Route path="/user-detail/:id" element={<Layout><ProtectedRoute><ChatContextProvider><UserDetailId /></ChatContextProvider></ProtectedRoute></Layout>} />
-<Route path="/edit-detail" element={<Layout><ProtectedRoute><EditUserDetailsPage /></ProtectedRoute></Layout>} />
-<Route path="editcouple-detail" element={<Layout><ProtectedRoute><CoupleEditDetailPage/></ProtectedRoute></Layout>}/>
-<Route path="/checkout/:title/:price" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+        {/* USER  */}
+        <Route path="/user-detail" element={<Layout><ProtectedRoute><ChatContextProvider><UserDetailPage /></ChatContextProvider></ProtectedRoute></Layout>} />
+        <Route path="/user-detail/:id" element={<Layout><ProtectedRoute><ChatContextProvider><UserDetailId /></ChatContextProvider></ProtectedRoute></Layout>} />
+        <Route path="/edit-detail" element={<Layout><ProtectedRoute><EditUserDetailsPage /></ProtectedRoute></Layout>} />
+        <Route path="editcouple-detail" element={<Layout><ProtectedRoute><CoupleEditDetailPage/></ProtectedRoute></Layout>}/>
+        <Route path="/checkout/:title/:price" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
 
 
-<Route  element={<Main_Layout/>}>
+        <Route  element={<Main_Layout/>}>
 
-{/* HOME */}
-<Route path='/home' element={<ProtectedRoute><Main_Home/></ProtectedRoute>} />
+        {/* HOME */}
+        <Route path='/home' element={<ProtectedRoute><Main_Home/></ProtectedRoute>} />
 
-{/* EVENTS */}
-<Route path="/event-page" element={<ProtectedRoute><EventPage /></ProtectedRoute>} />
-<Route path="/create_event" element={<ProtectedRoute><CreateEventPage /></ProtectedRoute>} />
-<Route path="/event_edit/:id" element={<ProtectedRoute><EditEventPage /></ProtectedRoute>} />
-<Route path='/event-detail/:id' element={<ProtectedRoute><ChatContextProvider><EventDetailPage/></ChatContextProvider></ProtectedRoute>} />
-<Route path="/event-detail-media" element={<ProtectedRoute><EventDetailMedia /></ProtectedRoute>} />
-<Route path="/my-event" element={<ProtectedRoute><Myevents/></ProtectedRoute>} />
-<Route path="/event-participants" element={<ProtectedRoute><EventParticipants /></ProtectedRoute>} />
-<Route path="/visited-users" element={<ProtectedRoute>< VisitedUsers/></ProtectedRoute>} />
-<Route path="/recentuser" element={<ProtectedRoute>< RecentUser/></ProtectedRoute>} />
-<Route path="/nearusers" element={<ProtectedRoute>< NearUsers/></ProtectedRoute>} />
-<Route path="/onlineusers" element={<ProtectedRoute><OnlineUers/></ProtectedRoute>} />
-<Route path="/my_friends" element={<ProtectedRoute><ChatContextProvider><MyFriends/></ChatContextProvider></ProtectedRoute>} />
-<Route path="/sent_request" element={<ProtectedRoute><SentRequest/></ProtectedRoute>} />
-<Route path="/recieved_request" element={<ProtectedRoute><RecievedRequests/></ProtectedRoute>} />
-<Route path="/membership" element={<ProtectedRoute><Membership/></ProtectedRoute>} />
-<Route path="/messaging" element={<ProtectedRoute><Messaging /></ProtectedRoute>} />
+        {/* EVENTS */}
+        <Route path="/event-page" element={<ProtectedRoute><EventPage /></ProtectedRoute>} />
+        <Route path="/create_event" element={<ProtectedRoute><CreateEventPage /></ProtectedRoute>} />
+        <Route path="/event_edit/:id" element={<ProtectedRoute><EditEventPage /></ProtectedRoute>} />
+        <Route path='/event-detail/:id' element={<ProtectedRoute><ChatContextProvider><EventDetailPage/></ChatContextProvider></ProtectedRoute>} />
+        <Route path="/event-detail-media" element={<ProtectedRoute><EventDetailMedia /></ProtectedRoute>} />
+        <Route path="/my-event" element={<ProtectedRoute><Myevents/></ProtectedRoute>} />
+        <Route path="/event-participants" element={<ProtectedRoute><EventParticipants /></ProtectedRoute>} />
+        <Route path="/visited-users" element={<ProtectedRoute>< VisitedUsers/></ProtectedRoute>} />
+        <Route path="/recentuser" element={<ProtectedRoute>< RecentUser/></ProtectedRoute>} />
+        <Route path="/nearusers" element={<ProtectedRoute>< NearUsers/></ProtectedRoute>} />
+        <Route path="/onlineusers" element={<ProtectedRoute><OnlineUers/></ProtectedRoute>} />
+        <Route path="/my_friends" element={<ProtectedRoute><ChatContextProvider><MyFriends/></ChatContextProvider></ProtectedRoute>} />
+        <Route path="/sent_request" element={<ProtectedRoute><SentRequest/></ProtectedRoute>} />
+        <Route path="/recieved_request" element={<ProtectedRoute><RecievedRequests/></ProtectedRoute>} />
+        <Route path="/membership" element={<ProtectedRoute><Membership/></ProtectedRoute>} />
+        <Route path="/messaging" element={<ProtectedRoute><Messaging /></ProtectedRoute>} />
 
-{/* CLUBS */}
-<Route path="/club-page" element={<ProtectedRoute><ClubPage /></ProtectedRoute>} />
-<Route path="/create_club" element={<ProtectedRoute><CreateClubPage /></ProtectedRoute>} />
-<Route path="/club-detail/:id" element={<ProtectedRoute><ClubDetail /></ProtectedRoute>} />
-<Route path="/club-detail-media" element={<ProtectedRoute><ClubDetailMedia/></ProtectedRoute>}/>
-<Route path="/editclubpage/:clubId" element={<ProtectedRoute><EditClubPage /></ProtectedRoute>} />
+        {/* CLUBS */}
+        <Route path="/club-page" element={<ProtectedRoute><ClubPage /></ProtectedRoute>} />
+        <Route path="/create_club" element={<ProtectedRoute><CreateClubPage /></ProtectedRoute>} />
+        <Route path="/club-detail/:id" element={<ProtectedRoute><ClubDetail /></ProtectedRoute>} />
+        <Route path="/club-detail-media" element={<ProtectedRoute><ClubDetailMedia/></ProtectedRoute>}/>
+        <Route path="/editclubpage/:clubId" element={<ProtectedRoute><EditClubPage /></ProtectedRoute>} />
 
 
-{/* TRAVEL */}
-<Route path="/travel-page" element={<ProtectedRoute><TravelPage /></ProtectedRoute>} />
-<Route path="/my-travel" element={<ProtectedRoute><MyTravel/></ProtectedRoute>}/>
-<Route path="/create_travel" element={<ProtectedRoute><CreateTravelPage /></ProtectedRoute>} />
-<Route path="/edit_travel/:travelid" element={<ProtectedRoute><EditTravelPage /></ProtectedRoute>} />
+        {/* TRAVEL */}
+        <Route path="/travel-page" element={<ProtectedRoute><TravelPage /></ProtectedRoute>} />
+        <Route path="/my-travel" element={<ProtectedRoute><MyTravel/></ProtectedRoute>}/>
+        <Route path="/create_travel" element={<ProtectedRoute><CreateTravelPage /></ProtectedRoute>} />
+        <Route path="/edit_travel/:travelid" element={<ProtectedRoute><EditTravelPage /></ProtectedRoute>} />
 
-</Route>
-<Route path="/legal/:index" element={<LegalPage />} />
-   </Routes>
-
+        </Route>
+        {/* </ChatContextProvider> */}
+        <Route path="/legal/:index" element={<LegalPage />} />
+      </Routes>
     </>
   )
 }

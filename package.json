@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@zegocloud/zego-uikit-prebuilt": "^1.8.15",
     "axios": "^1.6.0",
     "geolib": "^3.3.4",
     "getstream": "^8.4.1",
@@ -33,7 +34,8 @@
     "stream-chat": "^8.14.4",
     "stream-chat-react": "^10.22.1",
     "uuid": "^9.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zego-zim-web": "^2.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
