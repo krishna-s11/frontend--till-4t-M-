@@ -18,6 +18,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import "./css/eventDetailPage.css"
 import { IoMdSend } from "react-icons/io";
 import Comments from "./Comments";
+import { useCustomChatContext } from "../../Context/ChatContext";
 
 
 
@@ -37,7 +38,7 @@ const EventDetailPage = () => {
   const eventid = data.id;
   const [comment,setComment] = useState("");
   const [commentRender,setCommentRender] = useState(true);
-  const {startDMChatRoom} = useChatContext();
+  const {startDMChatRoom} = useCustomChatContext();
 
   useEffect(()=>{
 setUserInfo(user)
