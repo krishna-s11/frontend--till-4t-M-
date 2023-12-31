@@ -18,7 +18,6 @@ import { FaArrowLeft } from "react-icons/fa6";
 import "./css/eventDetailPage.css"
 import { IoMdSend } from "react-icons/io";
 import Comments from "./Comments";
-import { useCustomChatContext } from "../../Context/ChatContext";
 
 
 
