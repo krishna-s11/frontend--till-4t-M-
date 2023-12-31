@@ -5,12 +5,14 @@ import { IoMdSend } from 'react-icons/io';
 import { IoMdClose } from "react-icons/io";
 import api from '../../utils/api';
 import { MdDelete } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
 
 
-const Comments = ({productId, userInfo, product, setCommentRender}) => {
+const Comments = ({productId, userInfo, product, setCommentRender,setCommentId,setWriteReview}) => {
     const [rating,setRating] = useState(null);
     const [comment,setComment] = useState();
     const [starHover,setStarHover] = useState();
+    const [id,setId] = useState(null);
 
     const postComment = async() => {
         const data = {
@@ -99,7 +101,10 @@ const Comments = ({productId, userInfo, product, setCommentRender}) => {
                                     <p className="comment_text">{comment.comment}</p>
                                     { 
                                       comment.username === userInfo.username?
-                                      <MdDelete style={{position: "absolute", top: "50%",right: "0", transform: "translate(100%,-50%)", fontSize: "20px", color: "red", cursor: "pointer"}} onClick={() => {deleteComment(comment._id)}}/>
+                                      <div style={{position: "absolute", top: "50%",right: "0", transform: "translate(100%,-50%)", display:"flex", justifyContent: "space-between", alignItems: "center" }}>
+                                        <MdEdit style={{marginRight: "15px" ,fontSize: "20px", color: "#fff", cursor: "pointer"}} onClick={() => {setCommentId(comment._id);setWriteReview();}}/>
+                                        <MdDelete style={{fontSize: "20px", color: "#fff", cursor: "pointer"}} onClick={() => {deleteComment(comment._id)}}/>
+                                      </div>
                                       :null
                                     }
                                 </div>

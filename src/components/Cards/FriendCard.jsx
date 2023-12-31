@@ -3,14 +3,14 @@ import "./css/friendsCard.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import api from '../../utils/api';
-import { useChatContext } from '../../Context/ChatContext';
+import { useCustomChatContext } from '../../Context/ChatContext';
 
 const FriendCard = ({data,request}) => {
   const [users,setUsers] = useState([]);
   const {user} = useSelector((state)=>state.auth);
   const [userInfo,setUserInfo]=useState(user);
   const navigate = useNavigate();
-  const {startDMChatRoom} = useChatContext();
+  const {startDMChatRoom} = useCustomChatContext();
 
   const handleViewProfile = (e) => {
     e.preventDefault();

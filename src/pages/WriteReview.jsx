@@ -4,7 +4,7 @@ import api from "../utils/api";
 import Loading, { MidLoading } from '../components/M_used/Loading';
 
 
-const WriteReview = ({productId, userInfo, setCommentRender, close}) => {
+const WriteReview = ({productId, userInfo, setCommentRender, close, commentId}) => {
     const [rating,setRating] = useState(null);
     const [comment,setComment] = useState();
     const [starHover,setStarHover] = useState();

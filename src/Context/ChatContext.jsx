@@ -80,6 +80,6 @@ const ChatContextProvider = ({children}) => {
     )
 }
 
-export const useChatContext = () => useContext(ChatContext);
+export const useCustomChatContext = () => useContext(ChatContext);
 
 export default ChatContextProvider;

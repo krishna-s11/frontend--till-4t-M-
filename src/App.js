@@ -55,7 +55,7 @@ import Checkout from './pages/Checkout';
 import LegalPage from './pages/LegalPage';
 import Messaging from './pages/Messaging';
 import { StreamChat } from "stream-chat";
-import ChatContextProvider, { useChatContext } from './Context/ChatContext';
+import ChatContextProvider, { useCustomChatContext } from './Context/ChatContext';
 
 function App() {
 const {isAuthenticated} = useSelector((state)=>state.auth);
@@ -63,7 +63,7 @@ let location = useLocation();
 const { pathname } = location;
 const navigate = useNavigate()
 const from = location.state?.from?.pathname || "/home";
-const {setChatClient} = useChatContext();
+const {setChatClient} = useCustomChatContext();
 
 useEffect(() => {
   window.scrollTo(0, 0);

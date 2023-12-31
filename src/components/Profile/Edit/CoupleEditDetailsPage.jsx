@@ -307,24 +307,16 @@ setPerson2({...person2,[name]:value})
     }
   };
 
-
-
   const handleRemove = async() => {
     setImage("")
     try {
-      const formData = new FormData();
-      formData.append("image",image)
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
+    
       const { data } = await api.put(
-        `/upload_image/${userInfo?._id}`,formData,
-        config
+        `/upload_image/${Id}`
       )
       if(data){
-  
+        setUserInfo(data)
+        dispatch(loadUser())
       }
       
     }
@@ -332,6 +324,30 @@ setPerson2({...person2,[name]:value})
       console.log(error)
     }
   }
+
+  // const handleRemove = async() => {
+  //   setImage("")
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("image",image)
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     };
+  //     const { data } = await api.put(
+  //       `/upload_image/${userInfo?._id}`,formData,
+  //       config
+  //     )
+  //     if(data){
+  
+  //     }
+      
+  //   }
+  //     catch (error) {
+  //     console.log(error)
+  //   }
+  // }
   const handleSave = async (e) => {
     e.preventDefault();
     const couple= {

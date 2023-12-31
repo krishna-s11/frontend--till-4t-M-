@@ -1,5 +1,5 @@
 import React,{useContext, useEffect, useState} from 'react'
-import { ChatContext, useChatContext } from '../../Context/ChatContext'
+import { ChatContext, useCustomChatContext } from '../../Context/ChatContext'
 import "./styles/chatRoom.css"
 import { ChannelList } from 'stream-chat-react'
 import FriendsList from './FriendsList'
@@ -11,7 +11,7 @@ const ChatRooms = () => {
   const options = { state: true, presence: true, watcher: true};
   const sort = { last_message_at: -1 };
   const [friends,setFriends] = useState(0);
-  const {deleteChat} = useChatContext();
+  const {deleteChat} = useCustomChatContext();
   const {user} = useSelector
   ((state)=>state.auth);
 

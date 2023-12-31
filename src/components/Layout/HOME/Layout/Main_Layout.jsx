@@ -5,13 +5,13 @@ import DbHeader from "../Header/DbHeader";
 import Sidebar from "./Sidebar";
 import ModelSidebarList from "./ModelSidebarList";
 import Footer from "../../Footer";
-import { useChatContext } from "../../../../Context/ChatContext";
+import { useCustomChatContext } from "../../../../Context/ChatContext";
 
 const Main_Layout = () => {
   const [layout, setLayout] = useState("layout-1");
   const location = useLocation();
   const { pathname } = location;
-  const {unread} = useChatContext();
+  const {unread} = useCustomChatContext();
   useEffect(() => {
     if (
       pathname === "/create_club" ||

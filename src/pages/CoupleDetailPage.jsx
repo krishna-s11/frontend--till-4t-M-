@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate,useLocation } from "react-router-dom";
 import { calculateAge } from "../utils/CalculateAge";
 import Loading from "../components/M_used/Loading";
-import { useChatContext } from "../Context/ChatContext";
+import { useCustomChatContext } from "../Context/ChatContext";
 import { StreamChat } from "stream-chat";
 import api from "../utils/api";
 
@@ -12,9 +12,7 @@ const location = useLocation();
 const [age, setAge] = useState("");
   const [age2,setage2]=useState("")
 const {user} = useSelector((state)=>state.auth);
-const {startDMChatRoom} = useChatContext();
-const {initChatCalled} = useChatContext();
-const {setChatClient} = useChatContext();
+const {startDMChatRoom} = useCustomChatContext();
 const navigate = useNavigate();
 // const [userInfo,setUserInfo]=useState(user);
 // useEffect(()=>{
@@ -208,7 +206,7 @@ const navigate = useNavigate();
                   {
                     location.search.length>0?null:
                     <Link
-                      to="/edit-detail"
+                      to="/editcouple-detail"
                       className="cursor-pointer text-xs sm:text-lg"
                     >
                       Edit

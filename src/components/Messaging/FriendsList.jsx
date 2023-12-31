@@ -3,7 +3,7 @@ import "./styles/friendsList.css";
 import { useSelector } from "react-redux";
 import api from '../../utils/api';
 import { IoArrowBackSharp } from "react-icons/io5";
-import { useChatContext } from '../../Context/ChatContext';
+import { useCustomChatContext } from '../../Context/ChatContext';
 
 
 
@@ -11,7 +11,7 @@ const FriendsList = ({back}) => {
     const {user} = useSelector((state)=>state.auth);
     const [userInfo,setUserInfo]=useState(user);
     const [friends,setFriends] = useState([]);
-    const {startDMChatRoom} = useChatContext();
+    const {startDMChatRoom} = useCustomChatContext();
 
     const getFriends = async () => {
         userInfo.friends.map(async ele => {
