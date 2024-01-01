@@ -8,7 +8,7 @@ import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 
 
-const Comments = ({productId, userInfo, product, setCommentRender,setCommentId,setWriteReview}) => {
+const Comments = ({productId, userInfo, product, setCommentRender,setEditComment,setWriteReview}) => {
     const [rating,setRating] = useState(null);
     const [comment,setComment] = useState();
     const [starHover,setStarHover] = useState();
@@ -102,7 +102,7 @@ const Comments = ({productId, userInfo, product, setCommentRender,setCommentId,s
                                     { 
                                       comment.username === userInfo.username?
                                       <div style={{position: "absolute", top: "50%",right: "0", transform: "translate(100%,-50%)", display:"flex", justifyContent: "space-between", alignItems: "center" }}>
-                                        <MdEdit style={{marginRight: "15px" ,fontSize: "20px", color: "#fff", cursor: "pointer"}} onClick={() => {setCommentId(comment._id);setWriteReview();}}/>
+                                        <MdEdit style={{marginRight: "15px" ,fontSize: "20px", color: "#fff", cursor: "pointer"}} onClick={() => {setEditComment(comment);setWriteReview();}}/>
                                         <MdDelete style={{fontSize: "20px", color: "#fff", cursor: "pointer"}} onClick={() => {deleteComment(comment._id)}}/>
                                       </div>
                                       :null

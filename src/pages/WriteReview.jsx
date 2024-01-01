@@ -4,19 +4,30 @@ import api from "../utils/api";
 import Loading, { MidLoading } from '../components/M_used/Loading';
 
 
-const WriteReview = ({productId, userInfo, setCommentRender, close, commentId}) => {
+const WriteReview = ({productId, userInfo, setCommentRender, close, editComment}) => {
     const [rating,setRating] = useState(null);
     const [comment,setComment] = useState();
     const [starHover,setStarHover] = useState();
     const [loading,setLoading] = useState(0);
 
     useEffect(() => {
-        document.body.style.overflow = 'hidden';
-        return ()=> document.body.style.overflow = 'unset';
-    },[])
+       if(editComment){
+        setRating(editComment.rating);
+        setComment(editComment.comment);
+       }
+    },[editComment])
 
     const postComment = async() => {
         setLoading(1);
+        if(editComment){
+          const id = editComment._id
+          const config = {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+          await api.put(`/clubs/comment/del`,{id, productId}, config);
+        }
         const data = {
             productId: productId,
             userId: userInfo._id,
@@ -65,7 +76,7 @@ const WriteReview = ({productId, userInfo, setCommentRender, close, commentId}) 
                 })
               }
           </div>
-            <textarea onChange={(e) => {setComment(e.target.value)}} placeholder='Write your thoughts here...' style={{marginTop: "20px", width: "430px", height: "150px", borderRadius: "5px", padding: "10px", color: "#111"}}/>
+            <textarea onChange={(e) => {setComment(e.target.value)}} placeholder='Write your thoughts here...' defaultValue={editComment?comment:null} style={{marginTop: "20px", width: "430px", height: "150px", borderRadius: "5px", padding: "10px", color: "#111"}}/>
             <div style={{display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px"}}>
             <p><span onClick={postComment} className="primary_btn cursor-pointer !text-sm !py-3 !px-10" style={{marginRight: "10px", cursor: "pointer"}}>{loading?<Loading />:"Post"}</span></p>
             <p style={{cursor: "pointer"}} onClick={close}>Cancel</p>
