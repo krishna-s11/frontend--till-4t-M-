@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from 'react';
 import api from '../../utils/api';
 import { useChatContext } from 'stream-chat-react';
+import { MdDelete } from "react-icons/md";
 
 
 
@@ -106,7 +107,8 @@ const ChatRoomScreen = () => {
         <Channel >
           <Window>
             <div style={{position: "relative"}}>
-            <button onClick={() => {handleSend(ZegoUIKitPrebuilt.InvitationTypeVoiceCall)}} style={{position: "absolute", top:"50%", right: "30px", zIndex: "999", transform: "translateY(-50%)"}}><MdCall style={{fontSize: "24px"}}/></button>
+            <button onClick={() => {handleSend(ZegoUIKitPrebuilt.InvitationTypeVoiceCall)}} style={{position: "absolute", top:"50%", right: "70px", zIndex: "999", transform: "translateY(-50%)"}}><MdCall style={{fontSize: "24px"}}/></button>
+            <button onClick={() => {channel.delete()}}style={{position: "absolute", top:"50%", right: "30px", zIndex: "999", transform: "translateY(-50%)"}}><MdDelete style={{fontSize: "24px"}}/></button>
               <ChannelHeader />
             </div>
             <MessageList />
