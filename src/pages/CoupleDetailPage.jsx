@@ -110,6 +110,7 @@ const navigate = useNavigate();
                  
                 </div>
               </div>
+              {location.search.length > 0 ?
               <div className="grid justify-stretch gap-2 mt-3 event_card_button_wrap items-start" style={{width: "480px"}}>
               {/* {
                   user.friends.includes(userInfo?._id)? <button
@@ -180,7 +181,7 @@ const navigate = useNavigate();
                     </button>
                   } 
                 </div> 
-              </div>
+              </div>: null}
               {/* <p className="text-lg font-body_font">{userInfo?.slogan}</p>
               <p className="text-lg font-body_font">{userInfo?.introduction}</p> */}
             </div>

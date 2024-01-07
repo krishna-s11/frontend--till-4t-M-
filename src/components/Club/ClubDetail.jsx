@@ -206,11 +206,11 @@ useEffect(()=>{
                     {clubData?.email}
                   </span>
                 </div>
-                <div className="text-base my-2">
+                {/* <div className="text-base my-2">
                   <span >Website</span> : <span className="font-body_font">
                     {clubData?.website}
                   </span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

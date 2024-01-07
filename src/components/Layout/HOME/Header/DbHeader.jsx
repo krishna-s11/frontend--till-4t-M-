@@ -142,7 +142,7 @@ const DbHeader = () => {
               </div>
             </div>
             <div className="xl:w-1/5 flex justify-end items-center xl:pl-5 flex-wrap order-first xl:order-2 mt-8 xl:mt-0 xl:mb-0 mb-5">
-              <div className="cursor-pointer w-10 flex justify-center">
+              {/* <div className="cursor-pointer w-10 flex justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="23"
@@ -167,7 +167,7 @@ const DbHeader = () => {
                     fill="white"
                   />
                 </svg>
-              </div>
+              </div> */}
               <div class="notificationDrp relative ml-2 w-10 flex justify-center">
                 <div className="cursor-pointer">
                   <svg

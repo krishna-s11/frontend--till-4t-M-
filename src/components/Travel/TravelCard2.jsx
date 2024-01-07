@@ -3,26 +3,22 @@ import { GrStar } from "react-icons/gr";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { calculateAge } from "../../utils/CalculateAge";
+
 const TravelCard2 = ({ travel }) => {
-    const [age, setAge] = useState("");
-const [age2,setage2]=useState("")
-  const navigate = useNavigate()
+  const [age, setAge] = useState("");
+  const [age2,setage2]=useState("");
+  const navigate = useNavigate();
+
   const handleTravel = (id) => {
-    // console.log(id)
-    navigate(`/user-detail/${id}`)
+    navigate(`/user-detail?id=${id}`)
   };
-
-
 
   const formatDate = (dateString) => {
     const originalTimestamp = dateString;
     const date = new Date(originalTimestamp);
     const formattedDate = `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`;
-    
     return formattedDate;
   };
-
-
   
   useEffect(() => {
     if (travel?.userId?.profile_type === "single") {

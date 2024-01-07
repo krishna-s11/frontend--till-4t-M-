@@ -56,6 +56,9 @@ import LegalPage from './pages/LegalPage';
 import Messaging from './pages/Messaging';
 import { StreamChat } from "stream-chat";
 import ChatContextProvider, { useCustomChatContext } from './Context/ChatContext';
+import MyMedia from './pages/MyMedia';
+import AllUsers from './pages/AllUsers';
+import AccountPage from './pages/AccountPage';
 
 function App() {
 const {isAuthenticated} = useSelector((state)=>state.auth);
@@ -152,6 +155,10 @@ if(isAuthenticated && !pathname.includes("legal")){
         <Route path="/my-travel" element={<ProtectedRoute><MyTravel/></ProtectedRoute>}/>
         <Route path="/create_travel" element={<ProtectedRoute><CreateTravelPage /></ProtectedRoute>} />
         <Route path="/edit_travel/:travelid" element={<ProtectedRoute><EditTravelPage /></ProtectedRoute>} />
+
+        <Route path="/my-media" element={<ProtectedRoute><MyMedia /></ProtectedRoute>} />
+        <Route path="/allusers" element={<ProtectedRoute><AllUsers /></ProtectedRoute>} />
+        <Route path="/myaccount" element={<ProtectedRoute><AccountPage /></ProtectedRoute>} />
 
         </Route>
         {/* </ChatContextProvider> */}

@@ -149,6 +149,8 @@ const Sidebar = ({unread}) => {
     {
       title: "Search",
       submenus: [
+        // {title: "Search Users", submenu: [], path: "/allusers"},
+        { title: "Search Users", submenus: [],path:"/allusers" },
         {
           title: "Who Viewed Me",
           submenus: [],
@@ -198,8 +200,8 @@ const Sidebar = ({unread}) => {
         { title: "My Profile", submenus: [], path: "/user-detail" },
         { title: "My Posts", submenus: [] },
         { title: "Edit Profile", submenus: [], path: userInfo?.profile_type=="couple"?"/editcouple-detail" :"/edit-detail"},
-        { title: "My Media", submenus: [] },
-        { title: "Account", submenus: [] },
+        { title: "My Media", submenus: [], path: "/my-media" },
+        { title: "Account", submenus: [], path: "/myaccount" },
         {
           title: "My Points",
           submenus: [{ title: "Top up points", submenus: [] }],
