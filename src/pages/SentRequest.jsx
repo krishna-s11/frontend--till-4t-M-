@@ -9,7 +9,8 @@ const SentRequest = () => {
     const [friends,setFriends] = useState([]);
 
     const getFriends = async () => {
-      userInfo.sent_requests.map(async ele => {
+      const currentUser = await api.get(`/user_details/${user._id}`);
+      currentUser.data.sent_requests.map(async ele => {
         const { data } = await api.get(`/user_details/${ele}`);
         setFriends([...friends,data])
       })

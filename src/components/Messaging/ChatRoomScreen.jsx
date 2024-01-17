@@ -104,7 +104,7 @@ const ChatRoomScreen = () => {
 
   return (
     <div className='chatroomscreen'>
-        <Channel >
+        <Channel>
           <Window>
             <div style={{position: "relative"}}>
             <button onClick={() => {handleSend(ZegoUIKitPrebuilt.InvitationTypeVoiceCall)}} style={{position: "absolute", top:"50%", right: "70px", zIndex: "999", transform: "translateY(-50%)"}}><MdCall style={{fontSize: "24px"}}/></button>

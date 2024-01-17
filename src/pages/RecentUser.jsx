@@ -11,9 +11,9 @@ const RecentUser = () => {
 
     const getRecentUsers = async () => {
         let userArr = [];
-        const { data } = await api.get(`/recentusers`);
+        const { data } = await api.get(`/recent_users`);
         data.users.map(d => {
-            if(d._id !== userInfo._id){
+          if(d._id!== userInfo._id && !userInfo.blockedby.includes(d._id)) {
                 userArr.push(d);
             }
         })

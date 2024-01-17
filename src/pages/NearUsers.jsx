@@ -10,18 +10,21 @@ const NearUsers = () => {
 
     const getRecentUsers = async () => {
         let userArr = [];
-        const { data } = await api.get(`/recentusers`);
+        const { data } = await api.get(`/recent_users`);
+        console.log(data);
         data.users.map(d => {
-            if(d._id !== userInfo._id){
-                userArr.push(d);
-            }
-        })
-        setUsers(userArr);
+          if(d._id!== userInfo._id && !userInfo.blockedby.includes(d._id)) {
+              userArr.push(d);
+          }
+      })
+      setUsers(userArr);
     }
 
     useEffect(() => {
         getRecentUsers();
     },[])
+
+    console.log(users);
 
   return (
     <div className="home_page bg-black py-8 px-6 rounded-2xl">

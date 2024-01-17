@@ -6,8 +6,9 @@ import Loading from "../components/M_used/Loading";
 import { useCustomChatContext } from "../Context/ChatContext";
 import { StreamChat } from "stream-chat";
 import api from "../utils/api";
+import { AiFillLike } from "react-icons/ai";
 
-const CoupleDetailPage = ({userInfo,handleRemove,handleSendRequest,handleCancelRequest,sent,loading, blockUser, blocked}) => {
+const CoupleDetailPage = ({userInfo,currentUser,superlike,handleRemove,handleSendRequest,handleCancelRequest,sent,loading, blockUser, blocked}) => {
 const location = useLocation();
 const [age, setAge] = useState("");
   const [age2,setage2]=useState("")
@@ -110,36 +111,17 @@ const navigate = useNavigate();
                  
                 </div>
               </div>
-              {location.search.length > 0 ?
-              <div className="grid justify-stretch gap-2 mt-3 event_card_button_wrap items-start" style={{width: "480px"}}>
-              {/* {
-                  user.friends.includes(userInfo?._id)? <button
-                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
-                  onClick={handleRemove}
-                >
-                  Remove Friend
-                </button>:(user.sent_requests.includes(userInfo?._id)?
-                <button
-                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
-                  onClick={handleCancelRequest}
-                >
-                  Cancel Friend Request
-                </button>:<button
-                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
-                  onClick={handleSendRequest}
-                >
-                  Send Friend Request
-                </button>
-                )} */}
+              {location.search.length > 0 && location.search.split("=")[1] !== user?._id ?
+               <div className="flex" style={{width: "100%"}}>
                 {
-                  user.friends.includes(userInfo?._id)?
-                  <button className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]" onClick={handleRemove}>
+                  currentUser?.friends.includes(userInfo?._id)?
+                  <button className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px"}} onClick={handleRemove}>
                     Remove Friend
                   </button>
                   :
-                  user.sent_requests.includes(userInfo?._id) || sent ? 
+                  currentUser?.sent_requests.includes(userInfo?._id) || sent ? 
                   <button
-                      className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                      className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px"}}
                       onClick={handleCancelRequest}
                     >
                       {
@@ -148,7 +130,7 @@ const navigate = useNavigate();
                   </button>
                   :
                   <button
-                    className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                    className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px"}}
                     onClick={handleSendRequest}
                   >
                     {
@@ -156,31 +138,36 @@ const navigate = useNavigate();
                     }
                   </button>
                 }
-                <div style={{display: "flex", width: "300px"}}>
+                {/* <div style={{display: "flex", width: "300px"}}> */}
                 <button
-                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                  className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px"}}
                   onClick={() => {message()}}
-                  style={{marginRight: "10px"}}
                 >
                   Message
                 </button> 
                 {
-                  blocked || user.blocked_users.includes(userInfo?._id)?
+                  blocked || currentUser?.blocked_users.includes(userInfo?._id)?
                     <button
-                      className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                      className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px"}}
                       onClick={() => {blockUser()}}
                     >
                       Unblock
                     </button>
                     : 
                     <button
-                      className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                      className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px"}}
                       onClick={() => {blockUser()}}
                     >
                       Block
                     </button>
                   } 
-                </div> 
+                   <button
+                      className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px", display:"flex", alignItems:"center"}}
+                      onClick={() => {superlike()}}
+                    >
+                      <AiFillLike style={{fontSize:"16px", marginRight:"5px", marginBottom:"1px"}} /> Superlike
+                    </button>
+                {/* </div>  */}
               </div>: null}
               {/* <p className="text-lg font-body_font">{userInfo?.slogan}</p>
               <p className="text-lg font-body_font">{userInfo?.introduction}</p> */}

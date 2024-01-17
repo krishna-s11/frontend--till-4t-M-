@@ -18,7 +18,7 @@ const AllUsers = () => {
         let userArr = [];
         const { data } = await api.get(`/users`);
         data.map(d => {
-            if(d._id!== userInfo._id){
+            if(d._id!== userInfo._id && !userInfo.blockedby.includes(d._id)) {
                 userArr.push(d);
             }
         })

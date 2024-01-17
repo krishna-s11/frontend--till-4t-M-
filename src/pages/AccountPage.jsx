@@ -33,7 +33,7 @@ const AccountPage = () => {
                 My Account
               </h3>
             </div>
-            <div style={{marginTop: "50px", display: "flex", justifyContent: "space-between", flexWrap: "wrap", color: "orange", fontWeight: "600"}}>
+            <div className="w-full px-5 py-7" style={{marginTop: "50px", display: "flex", justifyContent: "space-between", flexWrap: "wrap", color: "orange", fontWeight: "600", fontSize: "20px", backgroundColor: "#2A2D37", borderRadius: "10px"}}>
                 <div>
                   <p style={{marginBottom: "20px"}}>Joined: <span style={{color: "orange", fontWeight: "400"}}>Aug 29, 2023</span></p>
                   <p>Last Payment: <span style={{color: "orange", fontWeight: "400"}}>None</span></p>

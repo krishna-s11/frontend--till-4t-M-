@@ -11,8 +11,14 @@ const OnlineUers = () => {
     const [userInfo,setUserInfo]=useState(user);
 
     const getVisitedUsers = async () => {
-        const {data} = await api.post(`/visited-users`,{visitedUserIds: userInfo.visited},{withCredentials:true});
-        setUsers(data.users);
+      let userArr = [];
+      const {data} = await api.get(`/active_users`,{withCredentials:true});
+      data.users.map(d => {
+          if(d._id!== userInfo._id && !userInfo.blockedby.includes(d._id)) {
+              userArr.push(d);
+          }
+      })
+      setUsers(userArr);
     }
 
     useEffect(() => {
@@ -28,15 +34,16 @@ const OnlineUers = () => {
           <h3 className="text-2xl sm:text-5xl leading-none font-bold">
             Online Users
           </h3>
-          {/* <Link to="/event-page" className="primary_btn !text-sm sm:!text-xl">
-            View More
-          </Link> */}
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-6">
-          No one is online
+        <div style={{display: "flex", flexWrap: "wrap"}}>
+           {
+            users.map((user,i) => (
+                <UserCard key={i} userInfo={user}/>
+            ))
+          }
         </div>
       </div>
-  </div>
+    </div>
   )
 }
 

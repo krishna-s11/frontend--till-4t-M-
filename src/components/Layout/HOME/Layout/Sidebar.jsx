@@ -128,8 +128,8 @@ const Sidebar = ({unread}) => {
         {
           title: "Hot List",
           submenus: [
-            { title: "Sent", submenus: [] },
-            { title: "Received", submenus: [] },
+            { title: "Sent", submenus: [], path:"/sent_superlike" },
+            { title: "Received", submenus: [], path: "/recieved_superlike" },
           ],
         },
         {
@@ -208,7 +208,7 @@ const Sidebar = ({unread}) => {
         },
         // { title: "Support", submenus: [] },
         { title: "About", submenus: [], path: "/about" },
-        { title: "Blocked", submenus: [] }
+        { title: "Blocked", submenus: [], path: "/blocked_users" }
       ],
     },
   ];

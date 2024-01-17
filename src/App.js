@@ -59,6 +59,9 @@ import ChatContextProvider, { useCustomChatContext } from './Context/ChatContext
 import MyMedia from './pages/MyMedia';
 import AllUsers from './pages/AllUsers';
 import AccountPage from './pages/AccountPage';
+import BlockedUsers from './pages/BlockedUsers';
+import SentHotList from './pages/SentHotList';
+import RecievedHotList from './pages/RecievedHotList';
 
 function App() {
 const {isAuthenticated} = useSelector((state)=>state.auth);
@@ -159,6 +162,9 @@ if(isAuthenticated && !pathname.includes("legal")){
         <Route path="/my-media" element={<ProtectedRoute><MyMedia /></ProtectedRoute>} />
         <Route path="/allusers" element={<ProtectedRoute><AllUsers /></ProtectedRoute>} />
         <Route path="/myaccount" element={<ProtectedRoute><AccountPage /></ProtectedRoute>} />
+        <Route path="/blocked_users" element={<ProtectedRoute><BlockedUsers /></ProtectedRoute>} />
+        <Route path="/sent_superlike" element={<ProtectedRoute><SentHotList /></ProtectedRoute>} />
+        <Route path="/recieved_superlike" element={<ProtectedRoute><RecievedHotList /></ProtectedRoute>} />
 
         </Route>
         {/* </ChatContextProvider> */}

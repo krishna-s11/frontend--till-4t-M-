@@ -4,14 +4,18 @@ import { calculateAge } from "../utils/CalculateAge";
 import CoupleDetailPage from "./CoupleDetailPage";
 import { useSelector } from "react-redux";
 import api from "../utils/api";
-import ChatContextProvider, { useCustomChatContext } from "../Context/ChatContext";
+import { useCustomChatContext } from "../Context/ChatContext";
 import Loading from "../components/M_used/Loading";
+import { AiFillLike } from "react-icons/ai";
+import { toast } from "react-toastify";
+
 
 const UserDetailPage = () => {
   const [age, setAge] = useState("");
   const [age2,setage2]=useState("")
   const {user} = useSelector
   ((state)=>state.auth);
+  const [currentUser,setCurrentUser] = useState();
   const [userInfo,setUserInfo]=useState();  
   const location = useLocation();
   const navigate = useNavigate();
@@ -21,6 +25,8 @@ const UserDetailPage = () => {
   const [blocked,setBlocked] = useState(0);
   
   const getUser = async () =>{
+    const currentUser = await api.get(`/user_details/${user._id}`);
+    setCurrentUser(currentUser.data);
     const id = location.search.split("=")[1]
     const { data } = await api.get(`/user_details/${id}`);
     setUserInfo(data);
@@ -31,7 +37,7 @@ const UserDetailPage = () => {
       setSent(0);
     }
   }
-
+  console.log(currentUser);
   useEffect(()=>{
     if(location.search.length > 0){
       getUser();
@@ -50,13 +56,17 @@ useEffect(() => {
       setAge(calculateAge(userInfo?.couple?.person1.DOB));
       setage2(calculateAge(userInfo?.couple?.person2.DOB));
     }
-}, []);
+    if(currentUser?.blocked_users.includes(userInfo?._id)){
+      setBlocked(1);
+    }
+}, [currentUser,userInfo]);
 
 const message = async () => {
   startDMChatRoom(userInfo);
   navigate("/messaging");
 }
 
+console.log(location.search);
 
 const handleRemove = async () => {
   try{
@@ -97,9 +107,27 @@ const blockUser = async () => {
       userId: user._id,
       blockId: userInfo._id
     });
-
     setLoading(0);
     setBlocked(1);
+  }catch(e){
+    console.log(e);
+  }
+}
+
+const superlike = async () => {
+  console.log("clicked");
+  let currentDate = Date.now();
+  if(currentUser.superlike.sent.some(obj => obj.userId === userInfo._id && ((currentDate - new Date(Number(obj.cooldown))) / (1000 * 60 * 60 * 24)) < 30)){
+    toast.error("You can only superlike a user once in a month");
+    return;
+  }
+  try{
+    await api.post("/superlike", {
+      userId: user._id,
+      superlikeId: userInfo._id,
+      cooldown: Date.now()
+    })
+    toast.success(`${userInfo.username} has been superliked successfully.`);
   }catch(e){
     console.log(e);
   }
@@ -110,7 +138,6 @@ const RenderedStyle={
 }
 
   return (
-  <ChatContextProvider>
   <>
 
 {userInfo?.profile_type==="single"?
@@ -148,29 +175,23 @@ const RenderedStyle={
              </h3>
            </div>
            <div className="text-lg flex items-center gap-2  mt-1 font-body_font">
-
-
-
-
             <span style={RenderedStyle}> 
               {age}
             </span>
-             
-
            </div>
          </div>
          {
-          location.search.length > 0 ? 
-         <div className="grid justify-stretch gap-2 mt-3 event_card_button_wrap items-start" style={{width: "300px"}}>
+          location.search.length > 0 && location.search.split("=")[1] !== user?._id ? 
+         <div className="flex" style={{width: "100%"}}>
                 {
-                  user.friends.includes(userInfo?._id)?
-                  <button className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]" onClick={handleRemove}>
+                  currentUser.friends.includes(userInfo?._id)?
+                  <button className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px"}} onClick={handleRemove}>
                     Remove Friend
                   </button>
                   :
-                  user.sent_requests.includes(userInfo?._id) || sent ? 
+                  currentUser.sent_requests.includes(userInfo?._id) || sent ? 
                   <button
-                      className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                      className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px"}}
                       onClick={handleCancelRequest}
                     >
                       {
@@ -179,7 +200,7 @@ const RenderedStyle={
                   </button>
                   :
                   <button
-                    className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                    className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px"}}
                     onClick={handleSendRequest}
                   >
                     {
@@ -188,27 +209,33 @@ const RenderedStyle={
                   </button>
                 }
                 <button
-                  className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                  className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px"}}
                   onClick={() => {message()}}
                 >
                   Message
                 </button>   
                 {
-                  blocked || user.blocked_users.includes(userInfo._id)?
+                  blocked || currentUser.blocked_users.includes(userInfo._id)?
                     <button
-                      className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                      className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px"}}
                       onClick={() => {blockUser()}}
                     >
                       Unblock
                     </button>
                     : 
                     <button
-                      className="primary_btn !py-1 !text-sm !leading-[28px] !px-1 w-full !text-[12px]"
+                      className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px"}}
                       onClick={() => {blockUser()}}
                     >
                       Block
                     </button>
                   } 
+                   <button
+                      className="primary_btn" style={{fontSize: "12px", padding: "5px 0", width: "180px", marginRight: "10px", display:"flex", alignItems:"center"}}
+                      onClick={() => {superlike()}}
+                    >
+                      <AiFillLike style={{fontSize:"16px", marginRight:"5px", marginBottom:"1px"}} /> Superlike
+                    </button>
           </div>:null}
        </div>
      </div>
@@ -452,11 +479,10 @@ const RenderedStyle={
    </div>
  </div>
 </div>:
-<CoupleDetailPage age={age} age2={age2} userInfo={userInfo} handleRemove={handleRemove} handleSendRequest={handleSendRequest} handleCancelRequest={handleCancelRequest} sent={sent} loading={loading} blockUser={blockUser} blocked={blocked}/>
+<CoupleDetailPage age={age} age2={age2} userInfo={userInfo} superlike={() => {superlike()}} currentUser={currentUser} handleRemove={handleRemove} handleSendRequest={handleSendRequest} handleCancelRequest={handleCancelRequest} sent={sent} loading={loading} blockUser={blockUser} blocked={blocked}/>
 }
    
     </>
-    </ChatContextProvider>
   );
 };
 

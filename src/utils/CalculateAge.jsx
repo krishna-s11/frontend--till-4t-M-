@@ -13,6 +13,6 @@ export const calculateAge = (dateOfBirth) => {
     ) {
       age--;
     }
-  
+    console.log(age)
     return age;
   };

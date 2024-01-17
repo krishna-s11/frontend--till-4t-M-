@@ -1,6 +1,6 @@
 import { Children, createContext, useContext,useEffect, useState,useRef } from "react";
 import { StreamChat } from "stream-chat";
-import { Chat } from "stream-chat-react";
+import { Chat, useChatContext } from "stream-chat-react";
 import { useSelector } from "react-redux";
 import { MidLoading } from "../components/M_used/Loading";
 import { useLocation, useNavigate } from "react-router-dom";

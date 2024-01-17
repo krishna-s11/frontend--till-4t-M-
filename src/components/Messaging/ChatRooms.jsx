@@ -29,7 +29,7 @@ const ChatRooms = () => {
       {
         friends?<FriendsList back={() => {setFriends(0)}}/>
         :
-        <ChannelList filters={{members: { $in: [user._id] }}} showChannelSearch={true} options={options} />
+        <ChannelList filters={{members: { $in: [user._id] }}} showChannelSearch={true} options={options} setActiveChannelOnMount={true} />
       }
     </div>
   )

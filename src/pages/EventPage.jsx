@@ -32,7 +32,11 @@ const EventPage = () => {
     const { data } = await api.get(`/events?q=${searchquery}`);
     setLoading(false)
     const allEvents = data.data;
-    const verifiedEvents = allEvents.filter((event) => event.isverify === true);
+    const verifiedEvents = allEvents.filter((event) => {
+      let now = new Date();
+      let eventEndDate = new Date(event.EndDate);
+      return event.isverify === true && eventEndDate > now;
+    });
     const newestPostFirst = verifiedEvents.reverse();
     setEvent(newestPostFirst);
     setNew(newestPostFirst)
@@ -262,7 +266,7 @@ const handleReset=()=>{
         </div>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-5">
-        {currentPost.map((el, i) => (
+        {currentPost.length>0?(currentPost.map((el, i) => (
           <>
           <div className="h-full bg-light-grey rounded-2xl" key={i}>
           <EventCard key={i} event={el} />
@@ -274,14 +278,17 @@ const handleReset=()=>{
           </div>
         )}
         </>
-        ))}
+        ))):<p>No event available right now !</p>}
       </div>
+      {currentPost.length>0?
       <Pagination
         totalPosts={event.length}
         postsPerPage={recordsPerPage}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
-      /> </>: <MidLoading/>}
+      />:null }
+       </>
+      : <MidLoading/>}
     </div>
   );
 };
