@@ -78,6 +78,12 @@ const CheckoutCard = ({title,price}) => {
             <input type="text" placeholder='CVV' style={{width: "45%", marginLeft: "-5px"}}/>
         </div>
         <div style={{display: "flex", alignItems: "center"}}>
+          <label for="tnc" style={{color: "orange", width: "100%"}}>* You will be charged according to the selected package amount either after the expiry of the package or from the date of purchase(Subject to package modification or cancellation from your side.)</label>
+        </div>
+        <div style={{display: "flex", alignItems: "center"}}>
+          <label for="tnc" style={{color: "orange", width: "100%"}}>* You will recieve a reminder email days before your billing date or amount deduction.</label>
+        </div>
+        <div style={{display: "flex", alignItems: "center"}}>
           <input type="checkbox" id="tnc" name="tnc" value="tnc"  style={{width: "20px", padding: "0", margin: "0 10px"}}/>
           <label for="tnc" style={{color: "orange", width: "100%"}}>I agree to <Link style={{cursor: "pointer"}} to="/legal/terms" target='_blank'>Terms & Conditions</Link> and <Link to="/legal/privacy" target="_blank">Privacy Policy</Link></label>
         </div>
