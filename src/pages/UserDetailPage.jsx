@@ -10,7 +10,7 @@ import { AiFillLike } from "react-icons/ai";
 import { toast } from "react-toastify";
 
 
-const UserDetailPage = () => {
+const UserDetailPage = ({socket}) => {
   const [age, setAge] = useState("");
   const [age2,setage2]=useState("")
   const {user} = useSelector
@@ -83,6 +83,23 @@ const handleSendRequest = async () => {
   try{
     setLoading(1);
     await api.put(`/send_request/${user?._id}/${userInfo?._id}`);
+    socket.emit('sendNotification', {
+      senderName: user.username,
+      senderId: user._id,
+      recieverId: userInfo._id,
+      recieverName: userInfo.username,
+      message: `${user.username} sent you a friend request`,
+      type: "friendRequest",
+    })
+    const res = await api.post("/notifications",{
+      senderId: user._id,
+      recieverId: userInfo._id,
+      senderName: user.username,
+      recieverName: userInfo.username,
+      type: "friendRequest",
+      message: `${user.username} sent you a friend request`,
+    });
+    console.log(res);
     setLoading(0);
     setSent(1);
   }catch(e){
@@ -127,6 +144,22 @@ const superlike = async () => {
       superlikeId: userInfo._id,
       cooldown: Date.now()
     })
+    socket.emit('sendNotification', {
+      senderName: user.username,
+      senderId: user._id,
+      recieverId: userInfo._id,
+      recieverName: userInfo.username,
+      message: `${user.username} sent you a superlike`,
+      type: "friendRequest",
+    })
+    const res = await api.post("/notifications",{
+      senderId: user._id,
+      recieverId: userInfo._id,
+      senderName: user.username,
+      recieverName: userInfo.username,
+      type: "friendRequest",
+      message: `${user.username} sent you a superlike`,
+    });
     toast.success(`${userInfo.username} has been superliked successfully.`);
   }catch(e){
     console.log(e);

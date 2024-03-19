@@ -7,7 +7,7 @@ import ModelSidebarList from "./ModelSidebarList";
 import Footer from "../../Footer";
 import { useCustomChatContext } from "../../../../Context/ChatContext";
 
-const Main_Layout = () => {
+const Main_Layout = ({socket}) => {
   const [layout, setLayout] = useState("layout-1");
   const location = useLocation();
   const { pathname } = location;
@@ -36,10 +36,11 @@ const Main_Layout = () => {
       setLayout("layout-2");
     }
   }, [pathname]);
+
   return (
     <div className="main_dashboard_wrapper bg-black-20 text-white grid content-between min-h-screen">
       <div>
-        <DbHeader />
+        <DbHeader socket={socket}/>
         <div className="dashboard_body_wrap">
         <div className="dashboard_body flex flex-wrap items-stretch min-h-screen mt-5">
           <div className="sidebar_wrapper w-1/5 hidden xl:block">

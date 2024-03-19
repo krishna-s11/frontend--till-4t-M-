@@ -7,13 +7,27 @@
 .hide{
     display: none;
 }
+.notification_indicator{
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: red ;
+    border: 1px solid orangered;
+    position: absolute;
+    right: 8px;
+
+    font-size: 4px;
+}
 .dropdownList {
     position: absolute;
     z-index: 111;
     background: #131313;
     padding: 15px 0;
-    min-width: 250px;
-    left: 50%;
+    min-width: 350px;
+    left: 0%;
     transform: translate(-50%, 0px);
     color: #fff;
     border-radius: 5px;
@@ -29,7 +43,7 @@
     display: block;
     position: absolute;
     top: -8px;
-    right: 47%;
+    right: 42.5%;
 }
 .dropdownList li a {
     padding: 10px 15px;

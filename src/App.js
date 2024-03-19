@@ -62,6 +62,7 @@ import AccountPage from './pages/AccountPage';
 import BlockedUsers from './pages/BlockedUsers';
 import SentHotList from './pages/SentHotList';
 import RecievedHotList from './pages/RecievedHotList';
+import {io} from "socket.io-client";
 
 function App() {
 const {isAuthenticated} = useSelector((state)=>state.auth);
@@ -70,6 +71,8 @@ const { pathname } = location;
 const navigate = useNavigate()
 const from = location.state?.from?.pathname || "/home";
 const {setChatClient} = useCustomChatContext();
+const [socket,setSocket] = useState(null);
+const {user} = useSelector((state)=>state.auth);
 
 useEffect(() => {
   window.scrollTo(0, 0);
@@ -89,12 +92,27 @@ useEffect(() => {
   }, []);
 
   useEffect(()=>{
-if(isAuthenticated && !pathname.includes("legal")){
-  console.log("first");
+  if(isAuthenticated && !pathname.includes("legal")){
+  // console.log("first");
+  // console.log(isAuthenticated.data);
   navigate(from, { replace: true })
 }
   },[isAuthenticated])
 
+  useEffect(() => {
+    if(isAuthenticated){
+      console.log(isAuthenticated);
+     setSocket(io("http://localhost:5000"));
+
+    }
+  },[isAuthenticated])
+
+  useEffect(() => {
+    if(user){
+      const currentUser = {username: user.username, userid: user._id};
+      socket?.emit("newUser", currentUser);
+    }
+  },[socket,user])
 
   return (
     <>
@@ -115,14 +133,14 @@ if(isAuthenticated && !pathname.includes("legal")){
         <Route path="/forgot" element={<Layout><ForgotPassword/></Layout>} />
     
         {/* USER  */}
-        <Route path="/user-detail" element={<Layout><ProtectedRoute><ChatContextProvider><UserDetailPage /></ChatContextProvider></ProtectedRoute></Layout>} />
+        <Route path="/user-detail" element={<Layout><ProtectedRoute><ChatContextProvider><UserDetailPage socket={socket} /></ChatContextProvider></ProtectedRoute></Layout>} />
         <Route path="/user-detail/:id" element={<Layout><ProtectedRoute><ChatContextProvider><UserDetailId /></ChatContextProvider></ProtectedRoute></Layout>} />
         <Route path="/edit-detail" element={<Layout><ProtectedRoute><EditUserDetailsPage /></ProtectedRoute></Layout>} />
         <Route path="editcouple-detail" element={<Layout><ProtectedRoute><CoupleEditDetailPage/></ProtectedRoute></Layout>}/>
         <Route path="/checkout/:title/:price" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
 
 
-        <Route  element={<Main_Layout/>}>
+        <Route  element={<Main_Layout socket={socket}/>}>
 
         {/* HOME */}
         <Route path='/home' element={<ProtectedRoute><Main_Home/></ProtectedRoute>} />
