@@ -102,7 +102,7 @@ useEffect(() => {
   useEffect(() => {
     if(isAuthenticated){
       console.log(isAuthenticated);
-     setSocket(io("http://localhost:5000"));
+     setSocket(io("http://localhost:8080"));
 
     }
   },[isAuthenticated])
