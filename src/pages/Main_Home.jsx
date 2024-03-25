@@ -55,6 +55,7 @@ const Main_Home = () => {
       `/search_travel?q=${searchquery}`
     );
     const verifyTravel = data.filter((travel) => travel.isVerify === true);
+    console.log(typeof(verifyTravel));
     setTravel(verifyTravel.reverse());
   };
 
@@ -69,6 +70,8 @@ const Main_Home = () => {
     // getModels();
     getTravel();
   }, [searchquery]);
+
+  console.log(typeof(travel));
 
 
   return (
@@ -115,7 +118,7 @@ const Main_Home = () => {
       )}
 
       {/* travel section starts  */}
-      {travel.length === 0 ? (
+      {/* {travel.length === 0 ? (
         ""
       ) : (
         <div className="mb-20">
@@ -136,7 +139,7 @@ const Main_Home = () => {
             ))}
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
