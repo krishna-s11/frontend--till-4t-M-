@@ -35,6 +35,9 @@ const Myevents = () => {
 
   return (
     <div className="bg-black pt-0 sm:pt-8 py-8 px-6 rounded-2xl xl:rounded-r-none min-h-full">
+      {
+        user.payment?.membership?
+      <>
       <div className="sticky top-0 bg-black z-[9] py-5 flex justify-between">
         <div className="flex flex-wrap gap-2 sm:gap-5 flex-1">
           {/* <div className="gradient p-[2px] rounded-t-3xl md:rounded-t-50px flex-1 cursor-pointer">
@@ -75,6 +78,12 @@ const Myevents = () => {
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />
+      </>
+      :
+      <div style={{height: "400px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "24px"}}>
+        <h1>You need to buy a membership to access the feature</h1>
+      </div>
+    }
     </div> 
   );
 };

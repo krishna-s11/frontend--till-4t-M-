@@ -2,9 +2,10 @@ import React,{useState} from 'react'
 import "./css/checkoutCard.css";
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { toast } from "react-toastify";
+import api from '../../utils/api';
 
-const CheckoutCard = ({title,price}) => {
+const CheckoutCard = ({title,price,month_freq}) => {
   const {user} = useSelector
   ((state)=>state.auth);
 
@@ -14,6 +15,7 @@ const CheckoutCard = ({title,price}) => {
     expmonth: "",
     expyear: "",
   })
+  const [agreement,setAgreement] = useState(false);
 
   const handleChange = e => {
     setDetails({
@@ -22,90 +24,22 @@ const CheckoutCard = ({title,price}) => {
     })
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(details);
-
-    axios.post('https://secure.nmi.com/api/transact.php', {}, {
-      params: {
-        recurring: "add_subscription",
-        ccnumber: "4111111111111111",
-        payment: "creditcard",
-        plan_payments: "0",
-        plan_amount: "6.99",
-        month_frequency: "3",
-        day_of_month: "12",
-        first_name: "Krishna",
-        last_name: "Saxena",
-        email: "krishnasaxena798@gmail.com",
-        customer_receipt: true,
-        security_key: "C6985y2wRqF2ufeabK8kefpy6VA74q4g",
-      }
-    }).then(response => {console.log(response)})
-    .catch(error => {console.log(error)});
-
-    // const params = new URLSearchParams({
-    //   recurring: "add_subscription",
-    //   ccnumber: "4111111111111111",
-    //   payment: "creditcard",
-    //   plan_payments: "0",
-    //   plan_amount: "6.99",
-    //   month_frequency: "3",
-    //   day_of_month: "12",
-    //   first_name: "Krishna",
-    //   last_name: "Saxena",
-    //   email: "krishnasaxena798@gmail.com",
-    //   customer_receipt: true,
-    //   security_key: "C6985y2wRqF2ufeabK8kefpy6VA74q4g",
-    // }).toString();
-
-    // const url =
-    // 'https://secure.nmi.com/api/transact.php?' +
-    //   params;
-    
-    const encodedParams = new URLSearchParams();
-    encodedParams.set('recurring', 'add_subscription');
-    encodedParams.set('ccnumber', '4111111111111111');
-    encodedParams.set('payment', 'creditcard');
-    encodedParams.set('plan_payments', '0');
-    encodedParams.set('plan_amount', '6.99');
-    encodedParams.set('month_frequency', '3');
-    encodedParams.set('day_of_month', '12');
-    encodedParams.set('first_name', 'k');
-    encodedParams.set('last_name', 's');
-    encodedParams.set('email', 'krishnasaxena798@gmail.com');
-    encodedParams.set('customer_receipt', 'true');
-    encodedParams.set('security_key', '6457Thfj624V5r7WUwc5v6a68Zsd6YEm');
-    
-    // const options = {
-    //   method: 'POST',
-    //   url: 'https://secure.nmi.com/api/transact.php',
-    //   headers: {
-    //     accept: 'application/x-www-form-urlencoded',
-    //     'Content-Type': 'application/x-www-form-urlencoded',
-    //     'Access-Control-Allow-Origin': "*"
-    //   },
-    //   data: encodedParams,
-    // };
-
-
-    // axios
-    // .request(options)
-    // .then(function (response) {
-    //   console.log(response.data);
-    // })
-    // .catch(function (error) {
-    //   console.error(error);
-    // });
-    
-    // axios
-    // .post(url, {},{})
-    // .then(res => {
-    //   console.log
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    // });
+    if(!agreement){
+      toast.error("You need to agree with the terms and conditions");;
+    }
+    else{
+      const res = await api.post("/create-subscription",{
+        ccnumber: details.ccnumber,
+        expmm: details.expmonth,
+        expyy: details.expyear,
+        userId: user._id,
+        amount: price.slice(1),
+        month_freq,
+      });
+      console.log(res);
+    }
   }
 
   const date = new Date();
@@ -174,10 +108,10 @@ const CheckoutCard = ({title,price}) => {
             <p style={{transform: "translateX(50px)"}}>Expiry Year:</p>
             <input type="text" placeholder='YYYY' maxLength={4} style={{width: "20%"}} name='expyear' onChange={handleChange}/>
         </div>
-        <div className='input_holder'>
+        {/* <div className='input_holder'>
             <p>CVV:</p>
             <input type="text" placeholder='CVV' style={{width: "45%", marginLeft: "-5px"}}/>
-        </div>
+        </div> */}
         <div style={{display: "flex", alignItems: "center"}}>
           <label for="tnc" style={{color: "orange", width: "100%"}}>* You will be charged according to the selected package amount either after the expiry of the package or from the date of purchase(Subject to package modification or cancellation from your side.)</label>
         </div>
@@ -185,7 +119,7 @@ const CheckoutCard = ({title,price}) => {
           <label for="tnc" style={{color: "orange", width: "100%"}}>* You will recieve a reminder email days before your billing date or amount deduction.</label>
         </div>
         <div style={{display: "flex", alignItems: "center"}}>
-          <input type="checkbox" id="tnc" name="tnc" value="tnc"  style={{width: "20px", padding: "0", margin: "0 10px"}}/>
+          <input type="checkbox" id="tnc" name="tnc" value="tnc" onChange={(e) => {setAgreement(e.target.checked)}} style={{width: "20px", padding: "0", margin: "0 10px"}}/>
           <label for="tnc" style={{color: "orange", width: "100%"}}>I agree to <Link style={{cursor: "pointer"}} to="/legal/terms" target='_blank'>Terms & Conditions</Link> and <Link to="/legal/privacy" target="_blank">Privacy Policy</Link></label>
         </div>
         <button onClick={handleSubmit}>Proceed</button>

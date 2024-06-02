@@ -22,27 +22,36 @@ const SentHotList = () => {
 
   return (
     <div className="home_page bg-black py-8 px-6 rounded-2xl">
-      <div className="mb-20">
-        <div className="flex justify-between flex-wrap gap-5 items-center mb-5 sm:mb-8">
-        <h3 className="text-2xl sm:text-5xl leading-none font-bold">
-           Superlike Sent
-          </h3>
-          {/* <Link to="/event-page" className="primary_btn !text-sm sm:!text-xl">
-            View More
-          </Link> */}
+      {
+        user.payment?.membership?
+        <>
+          <div className="mb-20">
+            <div className="flex justify-between flex-wrap gap-5 items-center mb-5 sm:mb-8">
+            <h3 className="text-2xl sm:text-5xl leading-none font-bold">
+              Superlike Sent
+              </h3>
+              {/* <Link to="/event-page" className="primary_btn !text-sm sm:!text-xl">
+                View More
+              </Link> */}
+            </div>
+            <div style={{display: "flex", flexWrap: "wrap",marginTop: "50px"}}>
+            {
+              users.length > 0 ?
+            (
+              users?.map((user,i) => {
+                return(
+                  <FriendCard data={user} key={i}/>
+                )
+              })
+            ):<p>You have not sent any superlike yet !</p>}
+            </div>
+          </div>
+        </>
+        :
+        <div style={{height: "400px", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "24px"}}>
+          <h1>You need to buy a membership to access the feature</h1>
         </div>
-        <div style={{display: "flex", flexWrap: "wrap",marginTop: "50px"}}>
-        {
-          users.length > 0 ?
-        (
-          users?.map((user,i) => {
-            return(
-              <FriendCard data={user} key={i}/>
-            )
-          })
-        ):<p>You have not sent any superlike yet !</p>}
-        </div>
-      </div>
+      }
   </div>
   )
 }

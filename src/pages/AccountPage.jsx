@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Loading from '../components/M_used/Loading';
 import api from '../utils/api';
+import { useSelector } from 'react-redux';
 
 const AccountPage = () => {
   const [success,setSuccess] = useState(false);
@@ -8,6 +9,7 @@ const AccountPage = () => {
   const [newPass,setNewPass] = useState();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const {user} = useSelector((state)=>state.auth);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +25,45 @@ const AccountPage = () => {
     setLoading(false);
   }
 
+  const convertDate = (dateStr) => {
+    let date = new Date(dateStr);
+    let options = { month: 'short', day: 'numeric', year: 'numeric' };
+    let formattedDate = date.toLocaleDateString('en-US', options);
+    return formattedDate;
+  }
+
+  const calcDiff = (dateStr1,dateStr2) => {
+      // Convert to Date objects
+      let date1 = new Date(dateStr1);
+      let date2 = new Date(dateStr2);
+  
+      // Ensure date1 is earlier than date2
+      if (date1 > date2) {
+          [date1, date2] = [date2, date1];
+      }
+  
+      // Calculate difference in months
+      let yearsDifference = date2.getFullYear() - date1.getFullYear();
+      let monthsDifference = (date2.getMonth() - date1.getMonth()) + (yearsDifference * 12);
+      let daysDifference = date2.getDate() - date1.getDate();
+  
+      // Adjust monthsDifference and daysDifference accordingly
+      if (daysDifference < 0) {
+          monthsDifference--;
+          let previousMonth = (date2.getMonth() === 0 ? 11 : date2.getMonth() - 1);
+          let previousMonthYear = (previousMonth === 11 ? date2.getFullYear() - 1 : date2.getFullYear());
+          let daysInPreviousMonth = new Date(previousMonthYear, previousMonth + 1, 0).getDate();
+          daysDifference += daysInPreviousMonth;
+      }
+  
+      // Check if the difference is less than 31 days
+      if (monthsDifference === 0 && daysDifference < 31) {
+          return `${daysDifference} day(s)`;
+      } else {
+          return `${monthsDifference} month(s)`;
+      }
+  }
+
   console.log(oldPass, newPass);
 
     return (
@@ -36,14 +77,14 @@ const AccountPage = () => {
             <div className="w-full px-5 py-7" style={{marginTop: "50px", display: "flex", justifyContent: "space-between", flexWrap: "wrap", color: "orange", fontWeight: "600", fontSize: "20px", backgroundColor: "#2A2D37", borderRadius: "10px"}}>
                 <div>
                   <p style={{marginBottom: "20px"}}>Joined: <span style={{color: "orange", fontWeight: "400"}}>Aug 29, 2023</span></p>
-                  <p>Last Payment: <span style={{color: "orange", fontWeight: "400"}}>None</span></p>
+                  <p>Last Payment: <span style={{color: "orange", fontWeight: "400"}}>{convertDate(user.payment?.last_payment)}</span></p>
                 </div>
                 <div>
                   <p style={{marginBottom: "20px"}}>Membership: <span style={{color: "orange", fontWeight: "400"}}>Limited access</span></p>
-                  <p>Expire/Renew Date: <span style={{color: "orange", fontWeight: "400"}}>Jan 20, 2024</span></p>
+                  <p>Expire/Renew Date: <span style={{color: "orange", fontWeight: "400"}}>{convertDate(user.payment?.membership_expiry)}</span></p>
                 </div>
                 <div>
-                  <p>Days until expiration: <span style={{color: "orange", fontWeight: "400"}}>14 Days</span></p> 
+                  <p>Days until expiration: <span style={{color: "orange", fontWeight: "400"}}>{calcDiff(user.payment?.last_payment,user.payment?.membership_expiry)}</span></p> 
                 </div>
             </div>
             <div className='w-full flex justify-center my-20'>

@@ -74,14 +74,15 @@ const Login = () => {
             progress: undefined,
             theme: "colored",
           });
-        } else {
+        }
+          else{
           setLoading(false);
-    dispatch({
-        type: LOGIN_SUCCESS,
-        payload: ans
-    })
-    dispatch(loadUser())
-        
+          dispatch({
+              type: LOGIN_SUCCESS,
+              payload: ans
+          })
+          dispatch(loadUser())
+              
           setLogin({ email: "", password: "" });
           setRememberMe(false);
           toast.success("🦄 Login Successful", {

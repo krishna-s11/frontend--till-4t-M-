@@ -137,7 +137,7 @@ useEffect(() => {
         <Route path="/user-detail/:id" element={<Layout><ProtectedRoute><ChatContextProvider><UserDetailId /></ChatContextProvider></ProtectedRoute></Layout>} />
         <Route path="/edit-detail" element={<Layout><ProtectedRoute><EditUserDetailsPage /></ProtectedRoute></Layout>} />
         <Route path="editcouple-detail" element={<Layout><ProtectedRoute><CoupleEditDetailPage/></ProtectedRoute></Layout>}/>
-        <Route path="/checkout/:title/:price" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+        <Route path="/checkout/:title/:price/:month_freq" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
 
 
         <Route  element={<Main_Layout socket={socket}/>}>
