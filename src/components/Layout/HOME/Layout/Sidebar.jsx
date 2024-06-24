@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./sidebar.css";
 import api from "../../../../utils/api";
 import { LOGOUT } from "../../../../redux/actions/types";
+
 const Submenu = ({ items, isOpen }) => (
   <ul className={`submenu ${isOpen ? "open" : ""}`}>
     {items.map((item, index) => (
@@ -15,6 +16,7 @@ const Submenu = ({ items, isOpen }) => (
     ))}
   </ul>
 );
+
 const MenuItem = ({
   title,
   submenus,
@@ -22,16 +24,16 @@ const MenuItem = ({
   activeMenuItem,
   setActiveMenuItem,
   externalPath,
-  unread
+  unread,
+  closeMenu
 }) => {
   const [showSubmenu, setShowSubmenu] = useState(false);
   const location = useLocation();
   const currentPath = location.pathname;
-  
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (currentPath == path) {
+    if (currentPath === path) {
       setActiveMenuItem(title);
       return;
     }
@@ -42,25 +44,20 @@ const MenuItem = ({
       setShowSubmenu(!showSubmenu);
     }
 
-    // if (title === "Log Out") {
-    //   removeCookie("token");
-    //   navigate("/login");
-    // }
-
     if (path) {
       setActiveMenuItem(title);
+      // if (closeMenu) {
+        closeMenu();  // Check if closeMenu is provided
+      // }
       navigate(path);
     }
-    if (externalPath){
+    if (externalPath) {
       window.open(externalPath, '_blank');
-
     }
   };
 
-
-
   return (
-    <li className="menu-item" style={{position: "relative"}}>
+    <li className="menu-item" style={{ position: "relative" }}>
       <span
         className={`title_submenu ${activeMenuItem === title ? "active" : ""}`}
         onClick={toggleSubmenu}
@@ -85,49 +82,51 @@ const MenuItem = ({
                   title={submenu.title}
                   path={submenu.path}
                   submenus={submenu.submenus}
+                  closeMenu={closeMenu}
                 />
               ))}
           </ul>
         </div>
       )}
-      {
-        title==="Messages" && unread>0?
-        <p style={{position: "absolute", top: "50%", right: "20px", transform: "translateY(-50%)", backgroundColor: "red", padding:"2px 8px", borderRadius: "5px"}}>{`${unread}`}</p>
-        :null
-      }
+      {title === "Messages" && unread > 0 ? (
+        <p style={{ position: "absolute", top: "50%", right: "20px", transform: "translateY(-50%)", backgroundColor: "red", padding: "2px 8px", borderRadius: "5px" }}>
+          {`${unread}`}
+        </p>
+      ) : null}
     </li>
   );
 };
-const Sidebar = ({unread}) => {
+
+const Sidebar = ({ unread, closeMenu }) => {
   const [activeMenuItem, setActiveMenuItem] = useState(null);
-  // const userInfo;  // USERINFO REDUCER
-  const {user} = useSelector((state)=>state.auth);
-  const [userInfo,setUserInfo]=useState(user);
-  useEffect(()=>{
-    setUserInfo(user)
-  },[])
+  const { user } = useSelector((state) => state.auth);
+  const [userInfo, setUserInfo] = useState(user);
+
+  useEffect(() => {
+    setUserInfo(user);
+  }, [user]);
+
   const menuItems = [
     {
       title: "Home",
       submenus: [],
       path: "/home",
     },
-
     {
       title: "My Interactions",
       submenus: [
         {
           title: "Friends",
           submenus: [
-            { title: "My Friends", submenus: [],path:"/my_friends"},
-            { title: "Sent", submenus: [],path:"/sent_request" },
-            { title: "Received", submenus: [] ,path:"/recieved_request"},
+            { title: "My Friends", submenus: [], path: "/my_friends" },
+            { title: "Sent", submenus: [], path: "/sent_request" },
+            { title: "Received", submenus: [], path: "/recieved_request" },
           ],
         },
         {
           title: "Hot List",
           submenus: [
-            { title: "Sent", submenus: [], path:"/sent_superlike" },
+            { title: "Sent", submenus: [], path: "/sent_superlike" },
             { title: "Received", submenus: [], path: "/recieved_superlike" },
           ],
         },
@@ -148,25 +147,23 @@ const Sidebar = ({unread}) => {
     {
       title: "Search",
       submenus: [
-        // {title: "Search Users", submenu: [], path: "/allusers"},
-        { title: "Search Users", submenus: [],path:"/allusers" },
+        { title: "Search Users", submenus: [], path: "/allusers" },
         {
           title: "Who Viewed Me",
           submenus: [],
           path: "/visited-users"
         },
-        { title: "New Members", submenus: [],path:"/recentuser" },
-        { title: "Near Members", submenus: [], path: "/nearusers"},
-        { title: "Who Is On", submenus: [] ,path:"/onlineusers"},
+        { title: "New Members", submenus: [], path: "/recentuser" },
+        { title: "Near Members", submenus: [], path: "/nearusers" },
+        { title: "Who Is On", submenus: [], path: "/onlineusers" },
       ],
     },
     {
       title: "Actions",
-      submenus: [ 
+      submenus: [
         { title: "Events", submenus: [], path: "/event-page" },
-        { title:"My Events",submenus:[], path:"/my-event"},
+        { title: "My Events", submenus: [], path: "/my-event" },
         { title: "Clubs", submenus: [], path: "/club-page" },
-        // { title: "Situationship Calendar", submenus: [], path: "/travel-page" },
         {
           title: "Live Action",
           submenus: [
@@ -185,7 +182,6 @@ const Sidebar = ({unread}) => {
     {
       title: "Shop",
       submenus: [],
-      // externalPath: "http://swinxterrooms.com/"
     },
     {
       title: "Situationship",
@@ -198,45 +194,41 @@ const Sidebar = ({unread}) => {
       submenus: [
         { title: "My Profile", submenus: [], path: "/user-detail" },
         { title: "My Posts", submenus: [] },
-        { title: "Edit Profile", submenus: [], path: userInfo?.profile_type=="couple"?"/editcouple-detail" :"/edit-detail"},
+        { title: "Edit Profile", submenus: [], path: userInfo?.profile_type === "couple" ? "/editcouple-detail" : "/edit-detail" },
         { title: "My Media", submenus: [], path: "/my-media" },
         { title: "Account", submenus: [], path: "/myaccount" },
         {
           title: "My Points",
           submenus: [{ title: "Top up points", submenus: [] }],
         },
-        // { title: "Support", submenus: [] },
         { title: "About", submenus: [], path: "/about" },
         { title: "Blocked", submenus: [], path: "/blocked_users" }
       ],
     },
   ];
- 
-
-
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
-const dispatch = useDispatch()
-  
-  const handlelogout =async () => {
-await api.post(`/logout/${userInfo?._id}`).then((res)=>{ 
-  dispatch({ type: LOGOUT });
-navigate("/login")}).catch((err)=>console.log(err))
+  const dispatch = useDispatch();
+
+  const handlelogout = async () => {
+    await api.post(`/logout/${userInfo?._id}`).then((res) => {
+      dispatch({ type: LOGOUT });
+      navigate("/login");
+    }).catch((err) => console.log(err))
   };
 
   return (
     <div className="sidebar xl:w-60">
       <div>
-        {userInfo?.profile_type==="couple"?
-        <img src={userInfo?.image?userInfo?.image:"images/couple-avatar.jpg"}/>
-      :
-      <img
-          src={userInfo?.image?userInfo?.image: userInfo?.gender==="male" ? "/images/boy-avatar.jpg"  :userInfo?.gender==="female" ? "/images/girl-avatar.jpg"  : "/images/trans avatar.png"}
-          className="hidden aspect-square object-cover xl:block"
-        />
-      }
-      
+        {userInfo?.profile_type === "couple" ?
+          <img src={userInfo?.image ? userInfo?.image : "images/couple-avatar.jpg"} />
+          :
+          <img
+            src={userInfo?.image ? userInfo?.image : userInfo?.gender === "male" ? "/images/boy-avatar.jpg" : userInfo?.gender === "female" ? "/images/girl-avatar.jpg" : "/images/trans avatar.png"}
+            className="hidden aspect-square object-cover xl:block"
+          />
+        }
         <div className="pt-0 pb-8 xl:py-4">
           <h3 className="font-semibold text-22px mb-3 ">{userInfo.username}</h3>
           <p className="flex items-center justify-between gap-4 mb-3 hover:text-orange font-body_font text-lg">
@@ -290,13 +282,14 @@ navigate("/login")}).catch((err)=>console.log(err))
                 title={menuItem.title}
                 path={menuItem.path}
                 submenus={menuItem.submenus}
-                externalPath={menuItem.externalPath?menuItem.externalPath:null}
+                externalPath={menuItem.externalPath ? menuItem.externalPath : null}
                 unread={unread}
+                closeMenu={closeMenu} // Pass closeMenu correctly here
               />
             ))}
             <li>
               <button
-                className="menu-item primary_btn logout_btn !p-3 !flex !justify-start !text-sm  sm:!text-base w-full"
+                className="menu-item primary_btn logout_btn !p-3 !flex !justify-start !text-sm sm:!text-base w-full"
                 onClick={handlelogout}
               >
                 Logout
@@ -308,4 +301,5 @@ navigate("/login")}).catch((err)=>console.log(err))
     </div>
   );
 };
+
 export default Sidebar;

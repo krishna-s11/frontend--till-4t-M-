@@ -271,7 +271,7 @@ const DbHeader = ({socket}) => {
                   sidebar ? "sidebar_open" : ""
                 }`}
               >
-                <Sidebar />
+                <Sidebar closeMenu={() => {setMenuOpen(false)}}/>
               </div>
             </div>
           </div>
